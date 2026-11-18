@@ -1,0 +1,83 @@
+# Sources the daily refresh checks for new / changed / cancelled offers.
+# method:
+#   jsonld     – page embeds schema.org Event JSON-LD → parsed automatically by tools/qj.py fetch
+#   ical       – .ics feed → parsed automatically
+#   json_api   – JSON endpoint → parsed automatically (adapter in tools/adapters.py)
+#   csv        – open-data CSV (e.g. location lists)
+#   html_watch – only detects that the page changed (hash) and flags it for review
+#   claude     – read and interpreted by the daily Claude task (automation/daily-refresh.md)
+# NOTE: none of these could be fetched from the build container on 2026-11-18 (network policy);
+#       methods other than `claude` are best guesses until the first successful run.
+
+items:
+  # ---------------------------------------------------------------- aggregators (highest yield)
+  - { id: kikuka, name: "kikuka – Kinder Kultur Kalender Zürich", url: "https://kikuka.ch/kalender", kind: aggregator, method: claude, priority: high, covers: "Theater, Musik, Bibliotheken (PBZ), GZ, Kirchen – mit Altersangabe", note: "User-suggested. Paid listing for organisers, so coverage of cultural providers is good." }
+  - { id: zurini, name: "zurini.ch – Zürich mit Kindern", url: "https://zurini.ch/", kind: aggregator, method: claude, priority: high, covers: "Gratis-Indoorspielplätze, Sonntags-Turnhallen, Events pro Ort", note: "User-suggested: /en/uncategorized-en/free-indoor-play-centres-in-zurich/ ; has per-venue event pages (/event-location/…)" }
+  - { id: kinderregion, name: "Kinderregion Zürich (Zürich Tourismus)", url: "https://kinderregion.ch/en/list/rainy-day-activities/", kind: aggregator, method: claude, priority: medium, covers: "Ausflugsziele, Regenwetter, Kindertheater-Listen", note: "User-suggested (tracking parameters removed). Also /de/liste/kindertheater/ and /de/liste/familientheater/" }
+  - { id: swissfamilyfun-zurich-kids, name: "Swiss Family Fun – Zurich kids", url: "https://swissfamilyfun.com/zurich-kids/", kind: aggregator, method: claude, priority: low, covers: "Places and outings (English), partly outside the city", note: "User-suggested; pages last updated ~2023" }
+  - { id: swissfamilyfun-rainy-day, name: "Swiss Family Fun – Rainy day Zurich", url: "https://swissfamilyfun.com/rainy-day-zurich/", kind: aggregator, method: claude, priority: low, covers: "Indoor places" }
+  - { id: kanton-zh-uebersicht, name: "Kanton Zürich – Alltags- und Freizeitangebote Familien mit Babys/Kleinkindern", url: "https://www.zh.ch/de/familie/angebote-fuer-familien-mit-kindern/familienleben-baby-kleinkind/uebersicht-alltags-und-freizeitangebote-familien-mit-kindern/deutsch.html", kind: directory, method: html_watch, priority: low, covers: "Types of offers (taxonomy), kjz courses", note: "User-suggested; generic, not city events" }
+  - { id: kjz-kurse, name: "kjz Kurse und Veranstaltungen (Kanton)", url: "https://www.zh.ch/de/familie/angebote-fuer-familien-mit-kindern/kinder-und-jugendhilfezentren/veranstaltungen-kurse-kjz.html", kind: provider_calendar, method: claude, priority: low }
+  - { id: eventfrog-kinder, name: "Eventfrog – Kinderveranstaltungen Zürich", url: "https://eventfrog.ch/de/events/kinderveranstaltungen.html", kind: aggregator, method: jsonld, priority: medium, note: "Event pages usually carry schema.org Event JSON-LD" }
+  - { id: zuerich-com-api, name: "Zürich Tourismus Open Data API v2", url: "https://www.zuerich.com/en/api/v2/data", kind: api, method: json_api, priority: low, covers: "schema.org entities (places); no events endpoint confirmed" }
+
+  # ---------------------------------------------------------------- open data (locations)
+  - { id: ogd-quartiertreff, name: "Open Data Stadt Zürich – Quartiertreffstandorte", url: "https://data.stadt-zuerich.ch/dataset/geo_quartiertreff", kind: open_data, method: csv, priority: high, covers: "Complete list of Quartiertreffs with coordinates → completes locations.yaml" }
+
+  # ---------------------------------------------------------------- Stadt Zürich – one page per Kreis
+  - { id: stadt-familienfreizeit-kreis1, name: "Stadt Zürich Familienfreizeit Kreis 1 – Kleinkinder", url: "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis1/kleinkinder.html", kind: provider_calendar, provider: stadt-zuerich-soziokultur-kinder, method: claude, priority: high }
+  - { id: stadt-familienfreizeit-kreis2, name: "Stadt Zürich Familienfreizeit Kreis 2 – Kleinkinder", url: "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis2/kleinkinder.html", kind: provider_calendar, provider: stadt-zuerich-soziokultur-kinder, method: claude, priority: high }
+  - { id: stadt-familienfreizeit-kreis3, name: "Stadt Zürich Familienfreizeit Kreis 3 – Kleinkinder", url: "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis3/kleinkinder.html", kind: provider_calendar, provider: stadt-zuerich-soziokultur-kinder, method: claude, priority: high }
+  - { id: stadt-familienfreizeit-kreis4, name: "Stadt Zürich Familienfreizeit Kreis 4 – Kleinkinder", url: "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis4/kleinkinder.html", kind: provider_calendar, provider: stadt-zuerich-soziokultur-kinder, method: claude, priority: high }
+  - { id: stadt-familienfreizeit-kreis5, name: "Stadt Zürich Familienfreizeit Kreis 5 – Kleinkinder", url: "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis5/kleinkinder.html", kind: provider_calendar, provider: stadt-zuerich-soziokultur-kinder, method: claude, priority: high }
+  - { id: stadt-familienfreizeit-kreis6, name: "Stadt Zürich Familienfreizeit Kreis 6 – Kleinkinder", url: "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis6/kleinkinder.html", kind: provider_calendar, provider: stadt-zuerich-soziokultur-kinder, method: claude, priority: high }
+  - { id: stadt-familienfreizeit-kreis7, name: "Stadt Zürich Familienfreizeit Kreis 7 – Kleinkinder", url: "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis7/kleinkinder.html", kind: provider_calendar, provider: stadt-zuerich-soziokultur-kinder, method: claude, priority: high }
+  - { id: stadt-familienfreizeit-kreis8, name: "Stadt Zürich Familienfreizeit Kreis 8 – Kleinkinder", url: "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis8/kleinkinder.html", kind: provider_calendar, provider: stadt-zuerich-soziokultur-kinder, method: claude, priority: high }
+  - { id: stadt-familienfreizeit-kreis9, name: "Stadt Zürich Familienfreizeit Kreis 9 – Kleinkinder", url: "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis9/kleinkinder.html", kind: provider_calendar, provider: stadt-zuerich-soziokultur-kinder, method: claude, priority: high }
+  - { id: stadt-familienfreizeit-kreis10, name: "Stadt Zürich Familienfreizeit Kreis 10 – Kleinkinder", url: "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis10/kleinkinder.html", kind: provider_calendar, provider: stadt-zuerich-soziokultur-kinder, method: claude, priority: high }
+  - { id: stadt-familienfreizeit-kreis11, name: "Stadt Zürich Familienfreizeit Kreis 11 – Kleinkinder", url: "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis11/kleinkinder.html", kind: provider_calendar, provider: stadt-zuerich-soziokultur-kinder, method: claude, priority: high }
+  - { id: stadt-familienfreizeit-kreis12, name: "Stadt Zürich Familienfreizeit Kreis 12 – Kleinkinder", url: "https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis12/kleinkinder.html", kind: provider_calendar, provider: stadt-zuerich-soziokultur-kinder, method: claude, priority: high }
+  - { id: stadt-familienberatung-angebote, name: "Familienberatung – Gruppenangebote", url: "https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienberatung/baby-kleinkind/angebote.html", kind: provider_calendar, provider: stadt-zuerich-familienberatung, method: claude, priority: high }
+  - { id: stadt-veranstaltungen-familienfreizeit, name: "Stadt Zürich Veranstaltungen – Familienfreizeit", url: "https://www.stadt-zuerich.ch/de/aktuell/veranstaltungen.html", kind: provider_calendar, provider: stadt-zuerich-soziokultur-kinder, method: jsonld, priority: medium }
+  - { id: mkz-vorschul, name: "MKZ Vorschulunterricht", url: "https://www.stadt-zuerich.ch/mkz/de/angebot/angebot-finden/vorschulunterricht.html", kind: provider_calendar, provider: mkz, method: html_watch, priority: low }
+
+  # ---------------------------------------------------------------- GZ (17)
+  - { id: gz-standorte, name: "ZGZ Standortliste", url: "https://gz-zh.ch/standorte/liste/", kind: directory, provider: zgz, method: claude, priority: high, covers: "Addresses of all GZ and Nebenstandorte" }
+  - { id: gz-affoltern-programm, name: "GZ Affoltern Programm", url: "https://gz-zh.ch/gz-affoltern/programm/", kind: provider_calendar, provider: gz-affoltern, method: claude, priority: high }
+  - { id: gz-bachwiesen-programm, name: "GZ Bachwiesen Programm", url: "https://gz-zh.ch/gz-bachwiesen/programm/", kind: provider_calendar, provider: gz-bachwiesen, method: claude, priority: high }
+  - { id: gz-buchegg-programm, name: "GZ Buchegg Programm", url: "https://gz-zh.ch/gz-buchegg/programm/", kind: provider_calendar, provider: gz-buchegg, method: claude, priority: high }
+  - { id: gz-gruenau-programm, name: "GZ Gruenau Programm", url: "https://gz-zh.ch/gz-gruenau/programm/", kind: provider_calendar, provider: gz-gruenau, method: claude, priority: high }
+  - { id: gz-heuried-programm, name: "GZ Heuried Programm", url: "https://gz-zh.ch/gz-heuried/programm/", kind: provider_calendar, provider: gz-heuried, method: claude, priority: high }
+  - { id: gz-hirzenbach-programm, name: "GZ Hirzenbach Programm", url: "https://gz-zh.ch/gz-hirzenbach/programm/", kind: provider_calendar, provider: gz-hirzenbach, method: claude, priority: high }
+  - { id: gz-hoengg-programm, name: "GZ Hoengg Programm", url: "https://gz-zh.ch/gz-hoengg/programm/", kind: provider_calendar, provider: gz-hoengg, method: claude, priority: high }
+  - { id: gz-hottingen-programm, name: "GZ Hottingen Programm", url: "https://gz-zh.ch/gz-hottingen/programm/", kind: provider_calendar, provider: gz-hottingen, method: claude, priority: high }
+  - { id: gz-leimbach-programm, name: "GZ Leimbach Programm", url: "https://gz-zh.ch/gz-leimbach/programm/", kind: provider_calendar, provider: gz-leimbach, method: claude, priority: high }
+  - { id: gz-loogarten-programm, name: "GZ Loogarten Programm", url: "https://gz-zh.ch/gz-loogarten/programm/", kind: provider_calendar, provider: gz-loogarten, method: claude, priority: high }
+  - { id: gz-oerlikon-programm, name: "GZ Oerlikon Programm", url: "https://gz-zh.ch/gz-oerlikon/programm/", kind: provider_calendar, provider: gz-oerlikon, method: claude, priority: high }
+  - { id: gz-riesbach-programm, name: "GZ Riesbach Programm", url: "https://gz-zh.ch/gz-riesbach/programm/", kind: provider_calendar, provider: gz-riesbach, method: claude, priority: high }
+  - { id: gz-schindlergut-programm, name: "GZ Schindlergut Programm", url: "https://gz-zh.ch/gz-schindlergut/programm/", kind: provider_calendar, provider: gz-schindlergut, method: claude, priority: high }
+  - { id: gz-seebach-programm, name: "GZ Seebach Programm", url: "https://gz-zh.ch/gz-seebach/programm/", kind: provider_calendar, provider: gz-seebach, method: claude, priority: high }
+  - { id: gz-wipkingen-programm, name: "GZ Wipkingen Programm", url: "https://gz-zh.ch/gz-wipkingen/programm/", kind: provider_calendar, provider: gz-wipkingen, method: claude, priority: high }
+  - { id: gz-witikon-programm, name: "GZ Witikon Programm", url: "https://gz-zh.ch/gz-witikon/programm/", kind: provider_calendar, provider: gz-witikon, method: claude, priority: high }
+  - { id: gz-wollishofen-programm, name: "GZ Wollishofen Programm", url: "https://gz-zh.ch/gz-wollishofen/programm/", kind: provider_calendar, provider: gz-wollishofen, method: claude, priority: high }
+
+  # ---------------------------------------------------------------- churches
+  - { id: ref-zuerich-events-json, name: "Reformierte Kirche Zürich – events.json.php", url: "https://www.reformiert-zuerich.ch/events.json.php", kind: api, provider: ref-zuerich, method: json_api, priority: high, note: "JSON endpoint seen in search results (events.json.php?read_group=…); parameters for 'Kinder' filter to be discovered" }
+  - { id: ref-zuerich-kalender, name: "Reformierte Kirche Zürich – Veranstaltungskalender", url: "https://reformiert-zuerich.ch/5.php", kind: provider_calendar, provider: ref-zuerich, method: claude, priority: high }
+  - { id: ref-kk6-kinder-familien, name: "Ref. Kirchenkreis sechs – Kinder und Familien", url: "https://reformiert-zuerich.ch/kirchenkreise/sechs/angebote/kinder-und-familien/", kind: provider_calendar, provider: ref-kk-6, method: claude, priority: high, note: User-suggested }
+  - { id: kath-zuerich-kalender, name: "Katholisch Stadt Zürich – 23 Pfarreien", url: "https://katholisch-zuerich.ch/standorte/pfarreien/", kind: provider_calendar, provider: kath-zuerich, method: claude, priority: medium }
+
+  # ---------------------------------------------------------------- user-suggested providers
+  - { id: fadenspule, name: Fadenspule Standorte, url: "https://www.fadenspule.ch/standorte", kind: provider_calendar, provider: fadenspule, method: claude, priority: high, note: User-suggested }
+  - { id: megamarie, name: "MegaMarie (MMI) Programm", url: "https://www.mmi.ch/de-ch/megamarie", kind: provider_calendar, provider: mmi, method: claude, priority: high, note: "User-suggested; semester programme PDF under /uploads/MegaMarie/" }
+  - { id: cevi-gloggespiel, name: Cevi Gloggespiel, url: "https://www.cevizuerich.ch/angebote/gloggespiel", kind: provider_calendar, provider: cevi-zuerich, method: claude, priority: medium, note: User-suggested }
+  - { id: qh6, name: Quartierhaus Kreis 6, url: "https://qh6.ch/", kind: provider_calendar, provider: qh6, method: claude, priority: medium, note: User-suggested }
+  - { id: zentrum-elch, name: Zentrum ELCH Angebote, url: "https://zentrumelch.ch/familienzentren-zuerich-elch", kind: provider_calendar, provider: verein-elch, method: claude, priority: high }
+  - { id: pbz-veranstaltungen, name: PBZ Veranstaltungen, url: "https://www.pbz.ch/", kind: provider_calendar, provider: pbz, method: claude, priority: high }
+
+  # ---------------------------------------------------------------- music / theatre
+  - { id: zko-kids, name: ZKO Kinderkonzerte, url: "https://zko.ch/kids/kinderkonzerte/", kind: provider_calendar, provider: zko, method: jsonld, priority: medium }
+  - { id: babykonzert, name: babykonzert.ch, url: "https://babykonzert.ch/", kind: provider_calendar, provider: babykonzert-ch, method: claude, priority: medium }
+  - { id: tonhalle-familien, name: Tonhalle Familienkonzerte, url: "https://tonhalle-orchester.ch/kinder-familien/familienkonzerte/", kind: provider_calendar, provider: tonhalle-orchester, method: jsonld, priority: low }
+  - { id: theater-purpur, name: Theater Purpur, url: "https://theater-purpur.ch/theater", kind: provider_calendar, provider: theater-purpur, method: claude, priority: medium }
+  - { id: ideesport-minimove, name: IdéeSport MiniMove Zürich, url: "https://www.ideesport.ch/de/angebot/minimove/", kind: provider_calendar, provider: ideesport, method: claude, priority: medium }

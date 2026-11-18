@@ -1,0 +1,34 @@
+name: Neues Angebot melden
+description: Ein Angebot für Kinder 0–4 in Zürich, das in der Datenbank fehlt oder falsch ist.
+title: "Angebot: "
+labels: ["neues-angebot"]
+body:
+  - type: input
+    id: title
+    attributes: { label: Name des Angebots, placeholder: "z.B. Eltern-Kind-Singen" }
+    validations: { required: true }
+  - type: input
+    id: provider
+    attributes: { label: Anbieter, placeholder: "z.B. GZ Wipkingen, Ref. Kirchenkreis drei" }
+  - type: input
+    id: where
+    attributes: { label: Ort / Adresse, placeholder: "z.B. Kirchgemeindehaus Wiedikon, Bühlstrasse 11" }
+  - type: input
+    id: when
+    attributes: { label: Wann, placeholder: "z.B. jeden Dienstag 9:00–10:00, ausser Schulferien / 12.12.2026 15 Uhr" }
+  - type: input
+    id: age
+    attributes: { label: Alter, placeholder: "z.B. 0–4 Jahre, ab 18 Monaten" }
+  - type: input
+    id: price
+    attributes: { label: Preis, placeholder: "gratis / CHF 5 pro Familie / Kollekte" }
+  - type: dropdown
+    id: registration
+    attributes: { label: Anmeldung, options: ["ohne Anmeldung", "Anmeldung nötig", "weiss nicht"] }
+  - type: input
+    id: url
+    attributes: { label: Link zur Quelle }
+    validations: { required: true }
+  - type: textarea
+    id: notes
+    attributes: { label: Bemerkungen }

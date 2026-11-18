@@ -1,0 +1,73 @@
+name: Events database
+
+on:
+  push:
+    paths: ["data/**", "tools/**", ".github/workflows/events-data.yml"]
+  pull_request:
+    paths: ["data/**", "tools/**"]
+  schedule:
+    - cron: "17 4 * * *"   # daily 04:17 UTC: fetch sources, flag changes
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  validate-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r tools/requirements.txt
+      - run: python tools/qj.py validate
+      - run: python tools/qj.py build && python tools/qj.py report
+      - uses: actions/upload-artifact@v4
+        with: { name: events-dist, path: dist/ }
+
+  daily-fetch:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    needs: validate-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r tools/requirements.txt
+      # Fetches every source, records page hashes in data/state/sources.json and writes
+      # JSON-LD / iCal / JSON events that look like 0–4 offers to data/state/candidates.json.
+      - run: python tools/qj.py fetch
+      - run: python tools/qj.py report
+      - name: Open a PR with changed sources and new candidates
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: data/daily-fetch
+          title: "Daily events check"
+          commit-message: "data: daily source check"
+          add-paths: data/state/
+          body: |
+            Automated daily check of `data/sources.yaml`.
+            - `data/state/sources.json`: which source pages changed since the last run
+            - `data/state/candidates.json`: structured events found that are not in the database yet
+            The daily Claude task (automation/daily-refresh.md) turns these into YAML records.
+
+  # Optional: push the database to Supabase when data changes on the default branch.
+  # Needs repository secret SUPABASE_DB_URL (Postgres connection string). Skipped when the secret is missing.
+  publish-supabase:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: validate-build
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r tools/requirements.txt && python tools/qj.py build
+      - name: Apply schema and seed
+        if: env.SUPABASE_DB_URL != ''
+        run: |
+          sudo apt-get install -y postgresql-client >/dev/null
+          psql "$SUPABASE_DB_URL" -v ON_ERROR_STOP=1 -f supabase/migrations/20261118000000_events_db.sql
+          psql "$SUPABASE_DB_URL" -v ON_ERROR_STOP=1 -f dist/seed.sql

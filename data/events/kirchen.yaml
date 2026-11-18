@@ -1,0 +1,208 @@
+# Churches: reformiert, katholisch, christkatholisch. Most offers pause during school holidays.
+defaults:
+  status: active
+  languages: [de]
+  verification: { status: reported, checked_at: 2026-11-18, method: web_search }
+
+items:
+  - id: ref-kk6-fiire-mit-de-chliine
+    title: { de: Fiire mit de Chliine, en: Toddler church service }
+    provider: ref-kk-6
+    locations: [kirche-unterstrass, pauluskirche]
+    category: church
+    age: { min_months: 24, max_months: 84, label: "ca. 2–7 Jahre mit Begleitung" }
+    schedule:
+      kind: dates
+      dates:
+        - { date: 2026-11-21, start: "10:00", location: kirche-unterstrass }
+      note: Wechselt zwischen Kirche Unterstrass, Pauluskirche und Bruder Klaus (ökumenisch). Danach Elternkafi und Spielzeit.
+    price: { free: true }
+    registration: none
+    url: https://www.reformiert-zuerich.ch/-4/kirchenkreis-6/angebote~1736/kinder-und-familien~1987/-kinder~2897/fiire-mit-de-chliine/50540/
+    verification: { status: reported, checked_at: 2026-11-18, method: web_search, evidence: "https://reformiert-zuerich.ch/-5/kirchenkreis-6/kalender~1732/?event=5062342&owner=80" }
+  - id: ref-kk6-eltern-kind-singen
+    title: { de: Eltern-Kind-Singen, en: Parent & child singing }
+    provider: ref-kk-6
+    locations: [kgh-oberstrass, kgh-paulus]
+    category: music
+    age: { min_months: 12, max_months: 48, label: "ca. 1–4 Jahre" }
+    schedule: { kind: weekly, days: [mon, wed, fri], start: "09:30", end: "11:15", pauses: school_holidays, note: "Mo+Fr KGH Oberstrass, Mi KGH Paulus; Zeiten ab August 2026 geändert, einige Gruppen ausgebucht" }
+    price: { free: false, text: "Semesterbeitrag; Schnupperlektion gratis" }
+    registration: required
+    url: https://reformiert-zuerich.ch/kirchenkreise/sechs/angebote/kinder-und-familien/eltern-kind-singen/
+  - id: ref-kk6-familienkafi
+    title: { de: Familienkafi, en: Family café }
+    provider: ref-kk-6
+    locations: [kgh-oberstrass]
+    category: cafe
+    age: { min_months: 0, max_months: 72, label: "Eltern mit kleinen Kindern" }
+    schedule: { kind: weekly, days: [thu], start: "14:00", end: "16:00", season: { note: "Herbstferien bis Frühlingsferien" }, pauses: school_holidays }
+    price: { free: true }
+    registration: none
+    description: Geschichten, Spiele und Basteln.
+    url: https://reformiert-zuerich.ch/-4/kirchenkreis-6/angebote~1736/kinder-und-familien~1987/
+  - id: ref-kk6-baby-cafe
+    title: { de: Baby-Café, en: Baby café }
+    provider: ref-kk-6
+    locations: [kgh-oberstrass]
+    category: baby
+    age: { min_months: 0, max_months: 12, label: "Babys bis ca. 1 Jahr" }
+    schedule: { kind: weekly, note: "Day/time to check" }
+    price: { free: true }
+    registration: none
+    url: https://www.reformiert-zuerich.ch/-4/kirchenkreis-6/angebote~1736/kinder-und-familien~1987/-kinder~2897/baby-cafe/82074/
+    status: needs_verification
+  - id: ref-kk6-familienmorgen
+    title: { de: Familienmorgen, en: Family morning }
+    provider: ref-kk-6
+    locations: [kirche-letten]
+    category: church
+    age: { min_months: 0, max_months: 84, label: "Familien mit Kindern bis 7" }
+    schedule: { kind: series, frequency: irregular }
+    price: { free: true }
+    registration: unknown
+    description: Singen, Basteln, Geschichten und gemeinsames Mittagessen.
+    url: https://www.reformiert-zuerich.ch/home/kirchenkreis-6/angebote~2896/-kinder~2897/familienmorgen/44132/
+    status: needs_verification
+  - id: ref-kk6-eltern-kind-turnen
+    title: { de: Eltern-Kind-Turnen, en: Parent & child gym }
+    provider: ref-kk-6
+    locations: [kirche-unterstrass]
+    category: movement
+    age: { min_months: 30, max_months: 60, label: "Kleinkinder mit Begleitung" }
+    schedule: { kind: weekly, days: [mon], pauses: school_holidays }
+    price: { free: false, text: Kursbeitrag }
+    registration: required
+    url: https://reformiert-zuerich.ch/-4/kirchenkreis-6/angebote~2896/-kinder~2897/eltern-kind-turnen/38772/
+    status: needs_verification
+
+  - id: ref-kk3-elki-singen
+    title: { de: ElKi-Singen, en: Parent & child singing }
+    provider: ref-kk-3
+    locations: [ref-friesenberg, kgh-wiedikon, ref-im-gut]
+    category: music
+    age: { min_months: 0, max_months: 60, label: "0–5 Jahre mit Bezugsperson" }
+    schedule: { kind: weekly, days: [tue, thu], pauses: school_holidays, note: "Di 09:00 Friesenberg, Di 10:30 Wiedikon, Do 09:00 Im Gut, Do 10:30 Wiedikon; Einstieg jederzeit" }
+    price: { free: false, amount_chf: 5, text: "CHF 5 pro Familie und Mal (bar/Twint)" }
+    registration: none
+    description: Singen, danach freies Spielen und Kaffee/Tee. Kontakt Katjuscha Rüegg.
+    url: https://reformiert-zuerich.ch/kirchenkreise/drei/kinder-und-familien/eltern-kind-singen/
+  - id: ref-kk45-eltern-kind-singen
+    title: { de: Eltern-Kind-Singen, en: Parent & child singing }
+    provider: ref-kk-4-5
+    locations: [bullingerhaus]
+    category: music
+    age: { min_months: 12, max_months: 48, label: Kleinkinder }
+    schedule: { kind: weekly, days: [fri], start: "09:30", end: "11:30", pauses: school_holidays, dates: [ { date: 2026-12-04, start: "09:30", end: "11:30" } ] }
+    price: { free: false, text: Beitrag }
+    registration: required
+    url: https://reformiert-zuerich.ch/-4/kirchenkreis-4--5/kinderkirche-~1723/eltern-kind-singen/39411/
+  - id: ref-kk45-singe-mit-de-chliine-johannes
+    title: { de: Singe mit de Chliine, en: Singing with little ones }
+    provider: ref-kk-4-5
+    locations: [kgh-johannes]
+    category: music
+    age: { min_months: 12, max_months: 48, label: Kleinkinder }
+    schedule: { kind: weekly, note: "Last seen dates March 2025" }
+    price: { free: false }
+    registration: unknown
+    url: https://reformiert-zuerich.ch/
+    status: needs_verification
+  - id: ref-kk9-eltern-kind-singen-albisrieden
+    title: { de: Eltern-Kind-Singen, en: Parent & child singing }
+    provider: ref-kk-9
+    locations: [neue-kirche-albisrieden]
+    category: music
+    age: { min_months: 12, max_months: 48, label: Kleinkinder }
+    schedule: { kind: weekly, days: [wed], start: "09:00", end: "09:45", pauses: school_holidays }
+    price: { free: false }
+    registration: required
+    url: https://reformiert-zuerich.ch/-5/kirchenkreis-9/kalender~1758/
+  - id: ref-kk10-singe-mit-de-chinde
+    title: { de: Singe mit de Chinde (Höngg), en: Parent & child singing (Höngg) }
+    provider: ref-kk-10
+    locations: [sonnegg-hoengg]
+    category: music
+    age: { min_months: 12, max_months: 60, label: Kleinkinder }
+    schedule: { kind: weekly, pauses: school_holidays, note: "Day to check" }
+    price: { free: false, amount_chf: 10, text: "CHF 10 pro Treffen, Geschwister ab 1 Jahr halber Preis" }
+    registration: required
+    url: https://reformiert-zuerich.ch/kirchenkreise/zehn/angebote/kind-und-familie/singe-mit-de-chinde/
+    status: needs_verification
+  - id: ref-kk10-kafi-und-zyt
+    title: { de: "kafi & zyt – Generationencafé", en: Intergenerational café }
+    provider: ref-kk-10
+    locations: [sonnegg-hoengg]
+    category: cafe
+    age: { min_months: 0, max_months: null, label: "für alle, Spielplatz und Kinderhaus" }
+    schedule: { kind: opening_hours, days: [mon, tue, wed, thu, fri], start: "14:00", end: "17:30" }
+    price: { free: true, text: "Eintritt frei" }
+    registration: none
+    url: https://reformiert-zuerich.ch/event/kafi-zyt-das-generationencafe-12475/
+  - id: ref-kk1-zwaergli-singe
+    title: { de: Zwärgli-Singe, en: Toddler singing }
+    provider: ref-kk-1
+    locations: [lavaterhaus]
+    category: music
+    age: { min_months: 12, max_months: 48, label: Kleinkinder }
+    schedule: { kind: weekly, note: "Last seen dates Feb 2026" }
+    price: { free: false }
+    registration: unknown
+    url: https://reformiert-zuerich.ch/kirchenkreise/eins/
+    status: needs_verification
+  - id: ref-kk2-singe-mit-de-chind
+    title: { de: "Singe mit de Chind (Leimbach, Greencity)", en: Parent & child singing }
+    provider: ref-kk-2
+    locations: []
+    location_note: Leimbach und Greencity
+    category: music
+    age: { min_months: 12, max_months: 48, label: Kleinkinder }
+    schedule: { kind: weekly, note: "Last seen dates Feb 2026" }
+    price: { free: false }
+    registration: unknown
+    url: https://reformiert-zuerich.ch/kirchenkreise/zwei/
+    status: needs_verification
+  - id: ref-kk78-fiire-mit-de-chliine
+    title: { de: Fiire mit de Chliine, en: Toddler church service }
+    provider: ref-kk-7-8
+    locations: [kirche-neumuenster, kirche-fluntern]
+    category: church
+    age: { min_months: 24, max_months: 84, label: "ca. 2–7 Jahre" }
+    schedule: { kind: series, frequency: monthly, note: "in der Regel einmal im Monat" }
+    price: { free: true }
+    registration: none
+    url: https://reformiert-zuerich.ch/kirchenkreise/sieben-acht/kinder-familie/
+    status: needs_verification
+  - id: ref-kk11-fiire-mit-de-chliine-seebach
+    title: { de: Fiire mit de Chliine (Seebach/Affoltern), en: Toddler church service }
+    provider: ref-kk-11
+    locations: [kgh-seebach]
+    category: church
+    age: { min_months: 24, max_months: 84, label: "ca. 2–7 Jahre" }
+    schedule: { kind: series, note: "Kontakt Pfrn. Stefanie Neuenschwander 043 495 90 50" }
+    price: { free: true }
+    registration: none
+    url: https://reformiert-zuerich.ch/event/fiire-mit-de-chliine-5160/
+    status: needs_verification
+
+  - id: kath-st-konrad-chrabbelgruppe
+    title: { de: Chrabbelgruppe, en: Crawling group }
+    provider: kath-st-konrad
+    locations: [pfarrei-st-konrad]
+    category: baby
+    age: { min_months: 0, max_months: 60, label: "Geburt bis Kindergarten" }
+    schedule: { kind: weekly, note: "Day/time to check; last seen Aug 2026" }
+    price: { free: true }
+    registration: none
+    url: https://katholisch-zuerich.ch/veranstaltung/st-konrad_30099857/
+    status: needs_verification
+  - id: christkath-fiire-mit-de-chliine
+    title: { de: Fiire mit de Chliine (christkatholisch), en: Toddler church service }
+    provider: christkath-zuerich
+    locations: [kgh-zur-muenz]
+    category: church
+    age: { min_months: 0, max_months: 96, label: "bis ca. 8 Jahre" }
+    schedule: { kind: dates, dates: [ { date: 2026-11-21, start: "10:30" } ] }
+    price: { free: true }
+    registration: none
+    url: https://www.christkath-zuerich.ch/

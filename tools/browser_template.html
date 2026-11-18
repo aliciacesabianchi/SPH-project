@@ -1,0 +1,222 @@
+<title>Quartierjournal Angebote 0–4</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky filter rail + scannable card list; Quartierjournal brand tokens (docs/PLAN.md) */
+:root {
+  --bg: #faf7f2; --surface: #ffffff; --ink: #1d1d1b; --muted: #6b665d; --line: #e7e1d6;
+  --yellow: #FFD54F; --magenta: #D2357F; --green: #2f9a55; --purple: #8E6BAA; --blue: #2a9fc0;
+  --chip: #f1ece3; --warn: #b26a00;
+  --font: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #171614; --surface: #211f1c; --ink: #f2eee7; --muted: #a8a196; --line: #34312c;
+  --yellow: #f5c93a; --magenta: #ec5c9c; --green: #5bcb80; --purple: #b597d0; --blue: #6fd0ea;
+  --chip: #2c2925; --warn: #f0a23a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #171614; --surface: #211f1c; --ink: #f2eee7; --muted: #a8a196; --line: #34312c;
+  --yellow: #f5c93a; --magenta: #ec5c9c; --green: #5bcb80; --purple: #b597d0; --blue: #6fd0ea;
+  --chip: #2c2925; --warn: #f0a23a; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 15px/1.5 var(--font);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 48px }
+.wrap { max-width: 1180px; margin: 0 auto }
+header { padding-block: 28px 18px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: end; justify-content: space-between }
+h1 { font-size: clamp(26px, 4vw, 36px); line-height: 1.1; margin: 0; letter-spacing: -0.02em; text-wrap: balance }
+h1 mark { background: linear-gradient(transparent 58%, var(--yellow) 58%); color: inherit; padding: 0 2px }
+.sub { color: var(--muted); margin: 6px 0 0; max-width: 60ch }
+.stats { display: flex; gap: 20px; flex-wrap: wrap; font-variant-numeric: tabular-nums }
+.stat b { display: block; font-size: 24px; line-height: 1 }
+.stat span { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em }
+nav.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 18px; overflow-x: auto }
+nav.tabs a { padding: 10px 14px; color: var(--muted); text-decoration: none; font-weight: 500; border-bottom: 3px solid transparent; white-space: nowrap }
+nav.tabs a[aria-current="page"] { color: var(--ink); border-color: var(--magenta) }
+.layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 28px; align-items: start }
+@media (max-width: 820px) { .layout { grid-template-columns: minmax(0, 1fr) } aside { position: static !important } }
+aside { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); display: grid; gap: 18px }
+fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 8px; min-width: 0 }
+legend { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 6px; font-weight: 500 }
+input[type=search], select { width: 100%; padding: 9px 11px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); font: inherit }
+input[type=range] { width: 100%; accent-color: var(--magenta) }
+.chips { display: flex; flex-wrap: wrap; gap: 6px }
+.chips button, .toggle { font: inherit; font-size: 13px; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer }
+.chips button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink) }
+label.check { display: flex; gap: 8px; align-items: center; font-size: 14px; cursor: pointer }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--magenta); outline-offset: 2px }
+.agevalue { font-family: var(--mono); font-size: 13px }
+.count { color: var(--muted); font-size: 14px; margin-bottom: 10px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap }
+.list { display: grid; gap: 10px }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 8px; min-width: 0 }
+.card h3 { margin: 0; font-size: 17px; line-height: 1.3 }
+.card h3 a { color: inherit; text-decoration: none } .card h3 a:hover { text-decoration: underline }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13.5px; color: var(--muted) }
+.meta b { color: var(--ink); font-weight: 500 }
+.pills { display: flex; flex-wrap: wrap; gap: 6px }
+.pill { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--chip); overflow-wrap: anywhere; max-width: 100% }
+.pill.free { background: color-mix(in srgb, var(--green) 18%, transparent); color: var(--green); font-weight: 500 }
+.pill.paid { background: color-mix(in srgb, var(--purple) 18%, transparent); color: var(--purple) }
+.pill.cat { background: color-mix(in srgb, var(--yellow) 45%, transparent) }
+.v { font-size: 12px; display: inline-flex; gap: 5px; align-items: center }
+.v::before { content: ""; width: 8px; height: 8px; border-radius: 50% }
+.v.confirmed::before { background: var(--green) } .v.reported::before { background: var(--blue) } .v.unverified::before { background: var(--warn) }
+.note { font-size: 13.5px; color: var(--muted); margin: 0; overflow-wrap: anywhere }
+.when { font-family: var(--mono); font-size: 13px }
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface) }
+table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums }
+th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top }
+th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 500; position: sticky; top: 0; background: var(--surface) }
+td a { color: var(--blue) }
+.empty { padding: 28px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: 12px }
+footer { color: var(--muted); font-size: 13px; margin-top: 28px }
+@media (prefers-reduced-motion: no-preference) { .card { transition: border-color .15s } .card:hover { border-color: var(--muted) } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Angebote für Kinder <mark>0–4</mark> in Zürich</h1>
+      <p class="sub">Spieltreffs, Eltern-Kind-Singen, Indoorspielplätze, Bibliotheken, Konzerte und Kurse aus GZ, Quartiertreffs, Kirchen und Familienzentren.</p>
+    </div>
+    <div class="stats" id="stats"></div>
+  </header>
+  <nav class="tabs" aria-label="Ansicht">
+    <a href="#angebote" data-view="angebote">Angebote</a>
+    <a href="#woche" data-view="woche">Diese Woche</a>
+    <a href="#anbieter" data-view="anbieter">Anbieter</a>
+    <a href="#orte" data-view="orte">Orte</a>
+    <a href="#quellen" data-view="quellen">Quellen</a>
+  </nav>
+  <div class="layout">
+    <aside id="filters">
+      <fieldset><legend>Suche</legend><input id="q" type="search" placeholder="z.B. Singen, Oerlikon, PBZ"></fieldset>
+      <fieldset><legend>Alter des Kindes: <span class="agevalue" id="agelabel">alle</span></legend>
+        <input id="age" type="range" min="-1" max="60" step="1" value="-1" aria-label="Alter in Monaten"></fieldset>
+      <fieldset><legend>Kreis</legend><div class="chips" id="kreise"></div></fieldset>
+      <fieldset><legend>Kategorie</legend><div class="chips" id="cats"></div></fieldset>
+      <fieldset><legend>Wochentag</legend><div class="chips" id="days"></div></fieldset>
+      <fieldset><legend>Weitere</legend>
+        <label class="check"><input id="free" type="checkbox"> nur gratis</label>
+        <label class="check"><input id="noreg" type="checkbox"> ohne Anmeldung</label>
+        <label class="check"><input id="verified" type="checkbox"> nur bestätigte Angaben</label>
+      </fieldset>
+    </aside>
+    <main id="main" style="min-width:0"></main>
+  </div>
+  <footer id="foot"></footer>
+</div>
+
+<script>
+const DATA = /*__DATA__*/null;
+const DAYS = ["Mo","Di","Mi","Do","Fr","Sa","So"];
+const CAT = { playground:"Spielraum", spielgruppe:"Spielgruppe/Betreuung", baby:"Baby & Krabbeln", music:"Musik", movement:"Bewegung",
+  museum:"Museum", theatre:"Theater", library:"Bibliothek", church:"Kirche", cafe:"Familien-Café", course:"Kurs", swimming:"Schwimmen",
+  nature:"Draussen", festival:"Fest", advice:"Beratung" };
+const VER = { confirmed:"bestätigt", reported:"gemeldet", unverified:"zu prüfen" };
+const REG = { none:"ohne Anmeldung", required:"Anmeldung nötig", recommended:"Anmeldung empfohlen", unknown:"Anmeldung ?" };
+const st = { q:"", age:-1, kreise:new Set(), cats:new Set(), days:new Set(), free:false, noreg:false, verified:false };
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const tx = v => v == null ? "" : typeof v === "object" ? (v.de || Object.values(v)[0]) : v;
+const hm = h => h == null ? "" : `${String(Math.floor(h)).padStart(2,"0")}:${String(Math.round((h % 1) * 60)).padStart(2,"0")}`;
+const ageTxt = m => m < 0 ? "alle" : m < 24 ? `${m} Monate` : `${(m/12).toFixed(m % 12 ? 1 : 0)} Jahre`;
+
+function chips(el, items, set) {
+  el.innerHTML = items.map(([k, l]) => `<button type="button" data-k="${esc(k)}" aria-pressed="false">${esc(l)}</button>`).join("");
+  el.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return;
+    const k = isNaN(b.dataset.k) ? b.dataset.k : Number(b.dataset.k);
+    set.has(k) ? set.delete(k) : set.add(k); b.setAttribute("aria-pressed", set.has(k)); render(); });
+}
+function when(e) {
+  if (e.dates?.length) {
+    const up = e.dates.filter(d => d.date >= new Date().toISOString().slice(0,10));
+    return (up.length ? up : e.dates).slice(0,3).map(d => `${d.date.slice(8,10)}.${d.date.slice(5,7)}. ${d.start || ""}`).join(" · ");
+  }
+  const d = e.days.map(i => DAYS[i]).join(", ");
+  const t = e.start != null ? ` ${hm(e.start)}${e.end != null ? "–" + hm(e.end) : ""}` : "";
+  return (d + t).trim() || ({series:"Reihe / Kursblöcke", on_request:"auf Anfrage"}[e.scheduleKind] || "Zeiten siehe Website");
+}
+function match(e) {
+  if (st.q) { const hay = [tx(e.title), e.provider, e.venue, e.quartier, e.address, tx(e.note), e.tags.join(" ")].join(" ").toLowerCase();
+    if (!st.q.toLowerCase().split(/\s+/).every(w => hay.includes(w))) return false; }
+  if (st.age >= 0 && (e.ageMinMonths > st.age || (e.ageMaxMonths != null && e.ageMaxMonths < st.age))) return false;
+  if (st.kreise.size && !e.kreise.some(k => st.kreise.has(k))) return false;
+  if (st.cats.size && !st.cats.has(e.categoryKey)) return false;
+  if (st.days.size && !e.days.some(d => st.days.has(d)) && !e.dates.some(x => st.days.has((new Date(x.date).getDay() + 6) % 7))) return false;
+  if (st.free && !e.isFree) return false;
+  if (st.noreg && e.registrationRaw !== "none") return false;
+  if (st.verified && e.verification !== "confirmed") return false;
+  return true;
+}
+function card(e) {
+  return `<article class="card">
+    <h3><a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(tx(e.title))}</a></h3>
+    <div class="meta"><span><b>${esc(e.provider)}</b></span><span>${esc(e.venue)}${e.kreise.length ? ` · Kreis ${e.kreise.join(", ")}` : ""}</span>
+      <span class="when">${esc(when(e))}</span></div>
+    <div class="pills">
+      <span class="pill cat">${esc(CAT[e.categoryKey] || e.categoryKey)}</span>
+      <span class="pill">${esc(tx(e.ageLabel) || ageTxt(e.ageMinMonths))}</span>
+      <span class="pill ${e.isFree ? "free" : "paid"}">${esc(e.isFree ? (tx(e.price) || "gratis") : (tx(e.price) || "kostenpflichtig"))}</span>
+      <span class="pill">${esc(REG[e.registrationRaw])}</span>
+      <span class="v ${e.verification}" title="geprüft am ${esc(e.checkedAt)}">${VER[e.verification]}${e.status === "needs_verification" ? " · Details fehlen" : ""}</span>
+    </div>
+    ${e.note || e.scheduleNote ? `<p class="note">${esc(tx(e.note) || "")} ${esc(e.scheduleNote || "")}</p>` : ""}
+  </article>`;
+}
+function weekView(list) {
+  const out = [], today = new Date(); today.setHours(0,0,0,0);
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(today); d.setDate(d.getDate() + i);
+    const iso = d.toISOString().slice(0,10), wd = (d.getDay() + 6) % 7;
+    const items = list.filter(e => e.dates.some(x => x.date === iso) || (["weekly","opening_hours"].includes(e.scheduleKind) && e.days.includes(wd) && !e.dates.length))
+      .sort((a, b) => (a.start ?? 99) - (b.start ?? 99));
+    out.push(`<h2 style="font-size:16px;margin:18px 0 8px">${DAYS[wd]} ${d.getDate()}.${d.getMonth()+1}. <span style="color:var(--muted);font-weight:400">· ${items.length}</span></h2>
+      <div class="list">${items.map(card).join("") || '<div class="empty">Nichts mit festem Termin gefunden.</div>'}</div>`);
+  }
+  return `<p class="count">Wöchentliche Angebote können in den Schulferien ausfallen.</p>` + out.join("");
+}
+function table(head, rows) {
+  return `<div class="tablewrap"><table><thead><tr>${head.map(h => `<th>${h}</th>`).join("")}</tr></thead><tbody>${rows.join("")}</tbody></table></div>`;
+}
+function render() {
+  const view = (location.hash || "#angebote").slice(1);
+  document.querySelectorAll("nav.tabs a").forEach(a => a.toggleAttribute("aria-current", false) || (a.dataset.view === view && a.setAttribute("aria-current", "page")));
+  $("#filters").hidden = !["angebote", "woche"].includes(view);
+  const list = DATA.events.filter(match);
+  let html = "";
+  if (view === "angebote") {
+    const order = { confirmed: 0, reported: 1, unverified: 2 };
+    list.sort((a, b) => (a.status === "needs_verification") - (b.status === "needs_verification") || order[a.verification] - order[b.verification] || tx(a.title).localeCompare(tx(b.title)));
+    html = `<div class="count"><span>${list.length} von ${DATA.events.length} Angeboten</span><span><span class="v confirmed">bestätigt</span> · <span class="v reported">gemeldet</span> · <span class="v unverified">zu prüfen</span></span></div>
+      <div class="list">${list.map(card).join("") || '<div class="empty">Keine Angebote passen zu diesen Filtern.</div>'}</div>`;
+  } else if (view === "woche") html = weekView(list);
+  else if (view === "anbieter") {
+    const n = {}; DATA.events.forEach(e => n[e.providerId] = (n[e.providerId] || 0) + 1);
+    html = table(["Anbieter", "Typ", "Angebote", "Status", "Website"], DATA.providers.slice().sort((a, b) => a.name.localeCompare(b.name)).map(p =>
+      `<tr><td>${esc(p.name)}</td><td>${esc(p.type)}</td><td>${n[p.id] || 0}</td><td><span class="v ${p.verification.status}">${VER[p.verification.status]}</span></td><td>${p.website ? `<a href="${esc(p.website)}" target="_blank" rel="noopener">Link</a>` : ""}</td></tr>`));
+  } else if (view === "orte") {
+    html = table(["Ort", "Adresse", "Kreis", "Quartier", "Art", "Status"], DATA.locations.slice().sort((a, b) => (a.kreis ?? 99) - (b.kreis ?? 99) || a.name.localeCompare(b.name)).map(l =>
+      `<tr><td>${esc(l.name)}</td><td>${esc([l.address.street, [l.address.zip, l.address.city].filter(Boolean).join(" ")].filter(Boolean).join(", "))}</td><td>${l.kreis ?? "?"}</td><td>${esc(l.quartier ?? "")}</td><td>${esc(l.kind)}</td><td><span class="v ${l.verification.status}" title="${esc(l.verification.note || "")}">${VER[l.verification.status]}</span></td></tr>`));
+  } else if (view === "quellen") {
+    html = `<p class="count">Diese Seiten prüft die tägliche Aktualisierung.</p>` + table(["Quelle", "Art", "Methode", "Priorität"], DATA.sources.map(s =>
+      `<tr><td><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a>${s.note ? `<div class="note">${esc(s.note)}</div>` : ""}</td><td>${esc(s.kind)}</td><td>${esc(s.method)}</td><td>${esc(s.priority)}</td></tr>`));
+  }
+  $("#main").innerHTML = html;
+}
+function init() {
+  const ev = DATA.events, free = ev.filter(e => e.isFree).length;
+  $("#stats").innerHTML = [[ev.length, "Angebote"], [free, "gratis"], [DATA.providers.length, "Anbieter"], [DATA.locations.length, "Orte"]]
+    .map(([n, l]) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`).join("");
+  chips($("#kreise"), Array.from({length: 12}, (_, i) => [i + 1, String(i + 1)]), st.kreise);
+  chips($("#cats"), Object.entries(CAT).filter(([k]) => ev.some(e => e.categoryKey === k)), st.cats);
+  chips($("#days"), DAYS.map((d, i) => [i, d]), st.days);
+  $("#q").addEventListener("input", e => { st.q = e.target.value.trim(); render(); });
+  $("#age").addEventListener("input", e => { st.age = +e.target.value; $("#agelabel").textContent = ageTxt(st.age); render(); });
+  ["free", "noreg", "verified"].forEach(id => $("#" + id).addEventListener("change", e => { st[id] = e.target.checked; render(); }));
+  addEventListener("hashchange", render);
+  $("#foot").textContent = `Stand ${DATA.meta.generated_at.replace("T", " ")} · Daten aus data/*.yaml · «gemeldet» = aus Suche/Drittlisten, auf der Website des Anbieters noch nicht bestätigt.`;
+  render();
+}
+init();
+</script>

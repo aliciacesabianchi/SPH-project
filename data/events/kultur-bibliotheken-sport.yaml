@@ -1,0 +1,212 @@
+# Libraries, music, theatre, museums, sport & swimming.
+defaults:
+  status: active
+  languages: [de]
+  verification: { status: reported, checked_at: 2026-11-18, method: web_search }
+
+items:
+  # ------------------------------------------------ PBZ
+  - id: pbz-buchstart-ryte-ryte-roessli
+    title: { de: "Buchstart: Ryte ryte Rössli", en: "Rhymes & songs for toddlers" }
+    provider: pbz
+    locations: [pbz-affoltern, pbz-altstadt, pbz-altstetten, pbz-aussersihl, pbz-hardau, pbz-hoengg, pbz-leimbach, pbz-oerlikon, pbz-riesbach, pbz-schuetze, pbz-schwamendingen, pbz-sihlcity, pbz-unterstrass, pbz-witikon]
+    location_note: Rotiert über die PBZ-Standorte, Daten Nov 2026–Feb 2027 im Kalender
+    category: library
+    age: { min_months: 12, max_months: 60, label: "Gruppen 1–2 und 2–5 Jahre" }
+    schedule: { kind: series, season: { from: 2026-11-01, to: 2027-02-28 } }
+    price: { free: true }
+    registration: unknown
+    url: https://kikuka.ch/veranstalter/PBZ%20Pestalozzi-Bibliothek%20Z%C3%BCrich
+  - id: pbz-buchstart-buecherkiste
+    title: { de: "Buchstart: Bücherkiste", en: "Picture-book time" }
+    provider: pbz
+    locations: [pbz-affoltern, pbz-altstadt, pbz-altstetten, pbz-aussersihl, pbz-hardau, pbz-hoengg, pbz-leimbach, pbz-oerlikon, pbz-riesbach, pbz-schuetze, pbz-schwamendingen, pbz-sihlcity, pbz-unterstrass, pbz-witikon]
+    category: library
+    age: { min_months: 24, max_months: 60, label: "Kleinkinder" }
+    schedule: { kind: series, start: "16:00", end: "17:30", note: "Dates per branch in the PBZ calendar" }
+    price: { free: true }
+    registration: none
+    url: https://www.pbz.ch/
+  - id: pbz-family-literacy
+    title: { de: "Family Literacy – Geschichten in vielen Sprachen", en: "Family Literacy – stories in many languages" }
+    provider: pbz
+    locations: []
+    location_note: verschiedene PBZ-Standorte
+    category: library
+    age: { min_months: 0, max_months: 72, label: "Kleinkinder mit Eltern" }
+    schedule: { kind: series, season: { from: 2026-11-01, to: 2027-02-28 } }
+    price: { free: true }
+    registration: none
+    languages: [it, es, sq, pt, tr, ta, ar, de]
+    url: https://kikuka.ch/veranstalter/PBZ%20Pestalozzi-Bibliothek%20Z%C3%BCrich
+
+  # ------------------------------------------------ Musik
+  - id: mkz-eltern-kind-singen
+    title: { de: Eltern-Kind-Singen und Musizieren (MKZ), en: Parent & child music (MKZ) }
+    provider: mkz
+    locations: []
+    location_note: an vielen MKZ-Standorten in allen Kreisen
+    category: music
+    age: { min_months: 18, max_months: 48, label: "1½–4 Jahre" }
+    schedule: { kind: weekly, note: "45 Min. pro Woche, Semesterkurs; Anmeldeschluss 15. Dezember / 31. Mai" }
+    price: { free: false, text: "Semestergebühr (einkommensabhängige Ermässigung möglich)" }
+    registration: required
+    url: https://www.stadt-zuerich.ch/mkz/de/angebot/angebot-finden/vorschulunterricht/eltern-kind-singen-musizieren.html
+  - id: klanghuus-eltern-baby-singen
+    title: { de: Eltern-Baby-Singen, en: Parent & baby singing }
+    provider: klanghuus
+    locations: []
+    category: music
+    age: { min_months: 4, max_months: 12, label: "ca. 4–12 Monate" }
+    schedule: { kind: weekly }
+    price: { free: false, text: Kursgeld }
+    registration: required
+    url: https://www.konservatorium.ch/klanghuus
+  - id: zko-krabbelkonzerte
+    title: { de: Krabbelkonzerte, en: Crawling concerts }
+    provider: zko
+    locations: [zko-haus]
+    category: music
+    age: { min_months: 12, max_months: 36, label: "1–3 Jahre" }
+    schedule: { kind: series, note: "Several per season, e.g. Sun 18.10.2026 at 11, 14, 16h; next dates on zko.ch" }
+    price: { free: false, amount_chf: 35, text: "Erwachsene CHF 35, Kinder CHF 15" }
+    registration: required
+    url: https://zko.ch/kids/kinderkonzerte/
+  - id: babykonzert-adventskonzert-seebach
+    title: { de: Babykonzert – Adventskonzert, en: Baby concert – Advent }
+    provider: babykonzert-ch
+    locations: [landhus-seebach]
+    category: music
+    age: { min_months: 0, max_months: 48, label: Babys und Kleinkinder }
+    schedule: { kind: dates, dates: [ { date: 2026-11-29 } ] }
+    price: { free: false, text: "Ticket, siehe babykonzert.ch" }
+    registration: recommended
+    url: https://babykonzert.ch/
+  - id: babykonzert-reihe
+    title: { de: Babykonzerte, en: Baby concerts }
+    provider: babykonzert-ch
+    locations: []
+    location_note: wechselnde Orte, z.B. Bäckeranlage
+    category: music
+    age: { min_months: 0, max_months: 48, label: Babys und Kleinkinder }
+    schedule: { kind: series, frequency: monthly }
+    price: { free: false }
+    registration: recommended
+    url: https://babykonzert.ch/
+  - id: tonhalle-familienkonzerte
+    title: { de: Familienkonzerte, en: Family concerts }
+    provider: tonhalle-orchester
+    locations: [tonhalle]
+    category: music
+    age: { min_months: 48, max_months: null, label: "ab ca. 4 Jahren (pro Konzert prüfen)" }
+    schedule: { kind: series, days: [sun], note: "4–5× pro Saison, 11:15 und 14:15" }
+    price: { free: false }
+    registration: required
+    url: https://tonhalle-orchester.ch/kinder-familien/familienkonzerte/
+    status: needs_verification
+  - id: academicus-family-concerts
+    title: { de: Familienkonzerte, en: Family concerts }
+    provider: academicus
+    locations: []
+    category: music
+    age: { min_months: 0, max_months: 72, label: "0–6 Jahre" }
+    schedule: { kind: series }
+    price: { free: false }
+    registration: required
+    languages: [en, de]
+    url: https://www.academicus.co/family-concert
+    status: needs_verification
+
+  # ------------------------------------------------ Theater
+  - id: theater-purpur-geschichtenraum
+    title: { de: Geschichtenraum, en: Story room }
+    provider: theater-purpur
+    locations: [theater-purpur]
+    category: theatre
+    age: { min_months: 24, max_months: null, label: "ab 2 Jahren" }
+    schedule: { kind: series }
+    price: { free: false }
+    registration: recommended
+    url: https://theater-purpur.ch/
+    status: needs_verification
+  - id: theater-purpur-adventsstueck-2026
+    title: { de: "Theater Purpur – Familienstück im Advent", en: "Advent family play" }
+    provider: theater-purpur
+    locations: [theater-purpur]
+    category: theatre
+    age: { min_months: 24, max_months: null, label: "für alle (ab ca. 2–3)" }
+    schedule: { kind: series, season: { from: 2026-12-02, to: 2026-12-13 } }
+    price: { free: false }
+    registration: required
+    url: https://kinderregion.ch/de/liste/kindertheater/
+    status: needs_verification
+  - id: theater-stadelhofen-figurentheater
+    title: { de: Figuren- und Puppentheater, en: Puppet theatre }
+    provider: theater-stadelhofen
+    locations: [theater-stadelhofen]
+    category: theatre
+    age: { min_months: 36, max_months: null, label: "einzelne Stücke ab 3–4 Jahren" }
+    schedule: { kind: series }
+    price: { free: false }
+    registration: required
+    url: https://kikuka.ch/veranstalter/Theater%20Stadelhofen
+
+  # ------------------------------------------------ Museen / Orte
+  - id: nmz-uzh-besuch
+    title: { de: Naturhistorisches Museum UZH (gratis), en: UZH Natural History Museum (free) }
+    provider: naturhistorisches-museum-uzh
+    locations: [nmz-uzh]
+    category: museum
+    age: { min_months: 12, max_months: null, label: "für Kleinkinder geeignet" }
+    schedule: { kind: opening_hours, days: [tue, wed, thu, fri, sat, sun] }
+    price: { free: true, text: "Eintritt frei" }
+    registration: none
+    url: https://www.kidscorner.ch/ausflug/museen.html
+  - id: tram-museum-eltern-kind-fuehrung
+    title: { de: Eltern-Kind-Führung im Tram-Museum, en: Tram museum parent & child tour }
+    provider: tram-museum
+    locations: [tram-museum]
+    category: museum
+    age: { min_months: 36, max_months: null, label: "ab 3 Jahren; Brio-Bahn für die Kleinsten" }
+    schedule: { kind: series }
+    price: { free: false }
+    registration: unknown
+    url: https://famigros.migros.ch/de/ausfluege-und-freizeit/ausflugsziele/tram-museum-museum
+    status: needs_verification
+
+  # ------------------------------------------------ Sport, Wasser, Draussen
+  - id: aquababy-babyschwimmen
+    title: { de: Baby- und Kinderschwimmen, en: Baby swimming }
+    provider: aquababy
+    locations: [hallenbad-oerlikon]
+    location_note: Hallenbäder Schwamendingen, Höngg, Oerlikon
+    category: swimming
+    age: { min_months: 3, max_months: 60, label: Babys und Kleinkinder }
+    schedule: { kind: series, note: "Course blocks" }
+    price: { free: false, text: Kursgeld }
+    registration: required
+    url: https://www.aquababy.ch/kurse/kursorte/
+  - id: playball-kreis-2
+    title: Playball
+    provider: playball
+    locations: []
+    location_note: Kreis 2
+    category: movement
+    age: { min_months: 24, max_months: 60, label: "2–5 Jahre" }
+    schedule: { kind: weekly }
+    price: { free: false, text: Kursgeld }
+    registration: required
+    languages: [de, en]
+    url: https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis2/kleinkinder.html
+    status: needs_verification
+  - id: kidical-mass-zuerich
+    title: { de: Kidical Mass – Familien-Velodemo, en: Kidical Mass family bike ride }
+    provider: kidical-mass-zuerich
+    locations: []
+    category: festival
+    age: { min_months: 0, max_months: null, label: "alle (Kleinkinder im Anhänger)" }
+    schedule: { kind: series, frequency: irregular }
+    price: { free: true }
+    registration: none
+    url: https://www.myswitzerland.com/en/experiences/events/kidical-mass-zuerch/
+    status: needs_verification

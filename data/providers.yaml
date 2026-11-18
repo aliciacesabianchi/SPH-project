@@ -1,0 +1,233 @@
+# Providers = organisations that run offers for families (who).
+# Locations (where) live in locations.yaml, offers/events (what & when) in events/*.yaml.
+#
+# `defaults` is merged into every item that does not set the key itself.
+# verification.status:
+#   confirmed  = checked on the provider's own page
+#   reported   = seen in a search result / third-party listing
+#   unverified = incomplete or from memory: a human (or the daily Claude task) must check it
+
+defaults:
+  verification: { status: reported, checked_at: 2026-11-18, method: web_search }
+
+items:
+  # ---------------------------------------------------------------- Gemeinschaftszentren
+  - id: zgz
+    name: Zürcher Gemeinschaftszentren (Stiftung ZGZ)
+    type: gemeinschaftszentrum
+    website: https://gz-zh.ch/
+    events_url: https://gz-zh.ch/standorte/liste/
+    phone: "043 300 60 00"
+    description: Stiftung, die im Auftrag der Stadt Zürich 17 Gemeinschaftszentren führt. Geschäftsstelle Schaffhauserstrasse 432, 8050 Zürich.
+    verification: { status: reported, checked_at: 2026-11-18, method: web_search, evidence: "https://gz-zh.ch/standorte/liste/" }
+  - { id: gz-affoltern,     name: GZ Affoltern,     type: gemeinschaftszentrum, parent: zgz, website: "https://gz-zh.ch/gz-affoltern/",     locations: [gz-affoltern] }
+  - { id: gz-bachwiesen,    name: GZ Bachwiesen,    type: gemeinschaftszentrum, parent: zgz, website: "https://gz-zh.ch/gz-bachwiesen/",    locations: [gz-bachwiesen] }
+  - { id: gz-buchegg,       name: GZ Buchegg,       type: gemeinschaftszentrum, parent: zgz, website: "https://gz-zh.ch/gz-buchegg/",       locations: [gz-buchegg] }
+  - { id: gz-gruenau,       name: GZ Grünau,        type: gemeinschaftszentrum, parent: zgz, website: "https://gz-zh.ch/gz-gruenau/",       locations: [gz-gruenau] }
+  - { id: gz-heuried,       name: GZ Heuried,       type: gemeinschaftszentrum, parent: zgz, website: "https://gz-zh.ch/gz-heuried/",       locations: [gz-heuried] }
+  - { id: gz-hirzenbach,    name: GZ Hirzenbach,    type: gemeinschaftszentrum, parent: zgz, website: "https://gz-zh.ch/gz-hirzenbach/",    locations: [gz-hirzenbach] }
+  - { id: gz-hoengg,        name: GZ Höngg,         type: gemeinschaftszentrum, parent: zgz, website: "https://gz-zh.ch/gz-hoengg/",        locations: [gz-hoengg, gz-hoengg-ruetihof] }
+  - { id: gz-hottingen,     name: GZ Hottingen,     type: gemeinschaftszentrum, parent: zgz, website: "https://gz-zh.ch/gz-hottingen/",     locations: [gz-hottingen, gz-hottingen-klosbach] }
+  - { id: gz-leimbach,      name: GZ Leimbach,      type: gemeinschaftszentrum, parent: zgz, website: "https://gz-zh.ch/gz-leimbach/",      locations: [gz-leimbach, gz-leimbach-manegg] }
+  - { id: gz-loogarten,     name: GZ Loogarten,     type: gemeinschaftszentrum, parent: zgz, website: "https://gz-zh.ch/gz-loogarten/",     locations: [gz-loogarten] }
+  - { id: gz-oerlikon,      name: GZ Oerlikon,      type: gemeinschaftszentrum, parent: zgz, website: "https://gz-zh.ch/gz-oerlikon/",      locations: [gz-oerlikon] }
+  - { id: gz-riesbach,      name: GZ Riesbach,      type: gemeinschaftszentrum, parent: zgz, website: "https://gz-zh.ch/gz-riesbach/",      locations: [gz-riesbach] }
+  - { id: gz-schindlergut,  name: GZ Schindlergut,  type: gemeinschaftszentrum, parent: zgz, website: "https://gz-zh.ch/gz-schindlergut/",  locations: [gz-schindlergut] }
+  - { id: gz-seebach,       name: GZ Seebach,       type: gemeinschaftszentrum, parent: zgz, website: "https://gz-zh.ch/gz-seebach/",       locations: [gz-seebach, gz-seebach-leutschenbach] }
+  - { id: gz-wipkingen,     name: GZ Wipkingen,     type: gemeinschaftszentrum, parent: zgz, website: "https://gz-zh.ch/gz-wipkingen/",     locations: [gz-wipkingen] }
+  - { id: gz-witikon,       name: GZ Witikon,       type: gemeinschaftszentrum, parent: zgz, website: "https://gz-zh.ch/gz-witikon/",       locations: [gz-witikon] }
+  - { id: gz-wollishofen,   name: GZ Wollishofen,   type: gemeinschaftszentrum, parent: zgz, website: "https://gz-zh.ch/gz-wollishofen/",   locations: [gz-wollishofen] }
+
+  # ---------------------------------------------------------------- Stadt Zürich (Soziokultur, Familienberatung, Quartiertreffs)
+  - id: stadt-zuerich-soziokultur-kinder
+    name: Stadt Zürich – Soziokultur Kinder (Familienfreizeit)
+    type: stadt
+    website: https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit.html
+    events_url: https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit.html
+    description: Freiwillige, kostenlose Angebote ohne Anmeldung für Kleinkinder mit Familien und Kinder bis 6. Klasse. Pro Kreis eine Seite "Freizeit-Angebote für Kleinkinder" (…/familienfreizeit/kreisN/kleinkinder.html).
+    locations: [familientreff-entlisberg, familientreff-hard, spielbaracke, quartierzentrum-baeckeranlage]
+  - id: stadt-zuerich-familienberatung
+    name: Familienberatung der Stadt Zürich (ehem. Mütter- und Väterberatung)
+    type: stadt
+    website: https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/familien/familienberatung.html
+    events_url: https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/fruehe-kindheit/familienberatung/baby-kleinkind/angebote.html
+    description: Kostenlose, mehrsprachige Beratung für Familien mit Kindern 0–18, 15 Treffpunkte in der Stadt. Seit August 2025 neuer Name. Gruppenangebote wie Begleiteter Bewegungsraum, PEKiP, Child'Space.
+  - id: stadt-zuerich-quartiertreffs
+    name: Stadt Zürich – Quartiertreffs und Quartierräume
+    type: quartiertreff
+    website: https://www.stadt-zuerich.ch/quartierraeume
+    description: Quartiertreffs, Quartierhäuser und Quartierzentren der Stadt. Vollständige Standortliste im Open-Data-Datensatz "geo_quartiertreff" (siehe sources.yaml).
+    locations: [quartierhaus-kreis-6, quartierzentrum-schuetze, quartierzentrum-baeckeranlage, quartiertreff-enge, quartiertreff-hirslanden, quartiertreff-zehntenhaus, quartiertreff-waldgarten, kulturhaus-helferei]
+  - id: mkz
+    name: Musikschule Konservatorium Zürich (MKZ)
+    type: musik
+    website: https://www.stadt-zuerich.ch/mkz/de/angebot/angebot-finden/vorschulunterricht.html
+    description: Städtische Musikschule. Vorschulunterricht inkl. Eltern-Kind-Singen und Musizieren (1½–4 Jahre). Anmeldeschluss meist 31. Mai / 15. Dezember.
+  - id: pbz
+    name: PBZ Pestalozzi-Bibliothek Zürich
+    type: bibliothek
+    website: https://www.pbz.ch/
+    events_url: https://www.pbz.ch/
+    description: Öffentliche Bibliothek der Stadt Zürich mit 14 Standorten. KinderTREFF-Reihe, Buchstart (Bücherkiste, Ryte ryte Rössli), Family Literacy in vielen Sprachen.
+    locations: [pbz-affoltern, pbz-altstadt, pbz-altstetten, pbz-aussersihl, pbz-hardau, pbz-hoengg, pbz-leimbach, pbz-oerlikon, pbz-riesbach, pbz-schuetze, pbz-schwamendingen, pbz-sihlcity, pbz-unterstrass, pbz-witikon]
+
+  # ---------------------------------------------------------------- Familienzentren & Vereine
+  - id: verein-elch
+    name: Verein ELCH für Eltere & Chind (Zentrum ELCH)
+    type: familienzentrum
+    website: https://zentrumelch.ch/
+    events_url: https://zentrumelch.ch/familienzentren-zuerich-elch
+    description: Sechs Familienzentren in Oerlikon, Affoltern, Schwamendingen und Altstetten. Kafi Plus mit Spielecke (gratis, kein Konsumzwang), Krabbeltreffs, Eltern-Kind-Turnen.
+    locations: [elch-regensbergstrasse, elch-frieden, elch-cece-areal, elch-accu, elch-krokodil]
+  - id: gfz-familienzentrum-zeltweg
+    name: GFZ Familienzentrum Zeltweg
+    type: familienzentrum
+    website: https://famigros.migros.ch/de/ausfluege-und-freizeit/ausflugsziele/gfz-familienzentrum-zeltweg-zuerich
+    description: Wöchentlicher Treffpunkt für Eltern mit Kleinkindern bis 4 Jahre. Eigene Website noch zu ergänzen.
+    locations: [gfz-zeltweg]
+    verification: { status: unverified, checked_at: 2026-11-18, method: web_search, note: "Only seen on famigros listing; own website and address to be added" }
+  - id: fadenspule
+    name: Fadenspule – Begegnungsort für kleine Kinder und ihre Eltern
+    type: verein
+    website: https://www.fadenspule.ch/
+    events_url: https://www.fadenspule.ch/standorte
+    description: Offene Spiel- und Begegnungsräume von Geburt bis Kindergarteneintritt für Familien mit Wohnsitz Stadt Zürich. Ohne Anmeldung, kein Programm, Beitrag nach eigenem Ermessen. Drei Standorte (MegaMarie, Kinderhaus Entlisberg, ELCH CeCe-Areal).
+    locations: [megamarie, kinderhaus-entlisberg, elch-cece-areal]
+    verification: { status: confirmed, checked_at: 2026-11-18, method: web_search, evidence: "https://www.fadenspule.ch/standorte" }
+  - id: mmi
+    name: Marie Meierhofer Institut für das Kind (MMI) – MegaMarie
+    type: verein
+    website: https://mmi.ch/megamarie.html
+    events_url: https://mmi.ch/megamarie.html
+    email: megamarie@mmi.ch
+    phone: "044 205 52 20"
+    description: MegaMarie ist der Spiel-, Werk- und Begegnungsraum des MMI im Kulturpark (Schiffbaustrasse 9b/9c). Angebote die ganze Woche, geleitet von Fachpersonen, ohne Anmeldung. Gratis psychologische Elternberatung.
+    locations: [megamarie]
+    verification: { status: confirmed, checked_at: 2026-11-18, method: web_search, evidence: "https://mmi.ch/megamarie.html" }
+  - id: cevi-zuerich
+    name: Cevi Zürich (Zentrum Glockenhof)
+    type: verein
+    website: https://www.cevizuerich.ch/angebote
+    events_url: https://cevizuerich.ch/de/kalender
+    description: Gloggespiel (stundenweise Kinderbetreuung und offener Spielraum), Gloggi-Basar, Ferienplausch.
+    locations: [cevi-glockenhof]
+  - id: qh6
+    name: Quartierhaus Kreis 6 (Verein)
+    type: quartiertreff
+    parent: stadt-zuerich-quartiertreffs
+    website: https://qh6.ch/
+    events_url: https://qh6.ch/was-laeuft-im-quartierhaus/
+    phone: "044 363 32 94"
+    description: Offene Kinderbetreuung, Spielgruppe Röslichnopf, Kurse mit Kinderbetreuung, Babysittervermittlung.
+    locations: [quartierhaus-kreis-6]
+  - { id: quartiertreff-enge-verein, name: Quartiertreff Enge, type: quartiertreff, parent: stadt-zuerich-quartiertreffs, website: "https://www.quartiertreff.ch/programm", events_url: "https://www.quartiertreff.ch/programm", locations: [quartiertreff-enge] }
+  - { id: quartiertreff-hirslanden-verein, name: Quartiertreff Hirslanden, type: quartiertreff, parent: stadt-zuerich-quartiertreffs, website: "https://famigros.migros.ch/de/ausfluege-und-freizeit/ausflugsziele/quartiertreff-hirslanden-zuerich", email: sekretariat@qth.ch, phone: "043 819 37 27", locations: [quartiertreff-hirslanden] }
+  - { id: kath-st-konrad, name: Pfarrei St. Konrad, type: kirche_katholisch, parent: kath-zuerich, website: "https://katholisch-zuerich.ch/standorte/pfarreien/" }
+  - { id: kirchenzentrum-saatlen-anbieter, name: Kirchenzentrum Saatlen, type: kirche_andere, locations: [kirchenzentrum-saatlen], verification: { status: reported, checked_at: 2026-11-18, method: aggregator, note: "Denomination to check" } }
+  - { id: baptistengemeinde-zuerich, name: Baptistengemeinde Zürich, type: kirche_andere, locations: [baptistengemeinde-steinwiesen], verification: { status: reported, checked_at: 2026-11-18, method: aggregator } }
+  - { id: bauspielplatz-affoltern-verein, name: Bauspielplatz Zürich-Affoltern, type: verein, locations: [bauspielplatz-affoltern] }
+  - id: ideesport
+    name: Stiftung IdéeSport (MiniMove)
+    type: sport
+    website: https://www.ideesport.ch/de/angebot/minimove/
+    description: Führt im Auftrag der Stadt Zürich MiniMove durch, offene Turnhallen an Wintersonntagen für 0-Jährige bis Ende Kindergarten mit Begleitpersonen.
+
+  # ---------------------------------------------------------------- Kirchen
+  - id: ref-zuerich
+    name: Reformierte Kirche Zürich (Kirchgemeinde Zürich)
+    type: kirche_reformiert
+    website: https://reformiert-zuerich.ch/
+    events_url: https://reformiert-zuerich.ch/5.php
+    description: Eine Kirchgemeinde mit 10 Kirchenkreisen. Kleinkinder-Angebote vor allem Fiire mit de Chliine, Eltern-Kind-Singen, Chrabbelgruppen in den Kirchgemeindehäusern.
+  - { id: ref-kk-1,   name: "Ref. Kirchenkreis eins (Altstadt)",                   type: kirche_reformiert, parent: ref-zuerich, website: "https://reformiert-zuerich.ch/kirchenkreise/eins/" }
+  - { id: ref-kk-2,   name: "Ref. Kirchenkreis zwei (Enge, Wollishofen, Leimbach)", type: kirche_reformiert, parent: ref-zuerich, website: "https://reformiert-zuerich.ch/kirchenkreise/zwei/" }
+  - { id: ref-kk-3,   name: "Ref. Kirchenkreis drei (Wiedikon, Friesenberg)",       type: kirche_reformiert, parent: ref-zuerich, website: "https://reformiert-zuerich.ch/kirchenkreise/drei/" }
+  - { id: ref-kk-4-5, name: "Ref. Kirchenkreis vier/fünf (Aussersihl, Industrie)",  type: kirche_reformiert, parent: ref-zuerich, website: "https://reformiert-zuerich.ch/kirchenkreise/vier-fuenf/" }
+  - { id: ref-kk-6,   name: "Ref. Kirchenkreis sechs (Oberstrass, Unterstrass)",    type: kirche_reformiert, parent: ref-zuerich, website: "https://reformiert-zuerich.ch/kirchenkreise/sechs/" }
+  - { id: ref-kk-7-8, name: "Ref. Kirchenkreis sieben/acht (Fluntern, Hottingen, Hirslanden, Witikon, Riesbach)", type: kirche_reformiert, parent: ref-zuerich, website: "https://reformiert-zuerich.ch/kirchenkreise/sieben-acht/" }
+  - { id: ref-kk-9,   name: "Ref. Kirchenkreis neun (Albisrieden, Altstetten)",     type: kirche_reformiert, parent: ref-zuerich, website: "https://reformiert-zuerich.ch/kirchenkreise/neun/" }
+  - { id: ref-kk-10,  name: "Ref. Kirchenkreis zehn (Höngg, Wipkingen)",           type: kirche_reformiert, parent: ref-zuerich, website: "https://reformiert-zuerich.ch/kirchenkreise/zehn/" }
+  - { id: ref-kk-11,  name: "Ref. Kirchenkreis elf (Oerlikon, Seebach, Affoltern)", type: kirche_reformiert, parent: ref-zuerich, website: "https://reformiert-zuerich.ch/kirchenkreise/elf/" }
+  - { id: ref-kk-12,  name: "Ref. Kirchenkreis zwölf (Schwamendingen)",            type: kirche_reformiert, parent: ref-zuerich, website: "https://reformiert-zuerich.ch/kirchenkreise/zwoelf/" }
+  - id: kath-zuerich
+    name: Katholische Kirche im Kanton Zürich – Pfarreien Stadt Zürich
+    type: kirche_katholisch
+    website: https://katholisch-zuerich.ch/
+    events_url: https://katholisch-zuerich.ch/
+    description: Veranstaltungskalender aller Pfarreien. Kleinkinder-Angebote je Pfarrei (z.B. ökumenisches Fiire mit de Chliine in Bruder Klaus).
+  - { id: kath-bruder-klaus, name: Pfarrei Bruder Klaus, type: kirche_katholisch, parent: kath-zuerich, website: "https://katholisch-zuerich.ch/" }
+  - id: christkath-zuerich
+    name: Christkatholische Kirchgemeinde Zürich
+    type: kirche_andere
+    website: https://www.christkath-zuerich.ch/
+    locations: [kgh-zur-muenz]
+
+  # ---------------------------------------------------------------- Musik
+  - id: zko
+    name: Zürcher Kammerorchester (ZKO)
+    type: musik
+    website: https://zko.ch/kids/kinderkonzerte/
+    events_url: https://zko.ch/kids/kinderkonzerte/
+    description: Kinderkonzerte inkl. Krabbelkonzerte (1–3 Jahre) im ZKO-Haus.
+    locations: [zko-haus]
+  - id: tonhalle-orchester
+    name: Tonhalle-Orchester Zürich
+    type: musik
+    website: https://tonhalle-orchester.ch/kinder-familien/familienkonzerte/
+    events_url: https://tonhalle-orchester.ch/kinder-familien/familienkonzerte/
+    description: Familienkonzerte 4–5× pro Saison, sonntags 11.15 und 14.15 Uhr.
+    locations: [tonhalle]
+  - id: babykonzert-ch
+    name: babykonzert.ch
+    type: musik
+    website: https://babykonzert.ch/
+    events_url: https://babykonzert.ch/
+    description: Seit 2014 regelmässige Babykonzerte an wechselnden Orten in Zürich.
+  - id: academicus
+    name: Academicus Family Concerts
+    type: musik
+    website: https://www.academicus.co/family-concert
+    description: Familienkonzerte für Kinder 0–6 Jahre mit Eltern.
+    verification: { status: unverified, checked_at: 2026-11-18, method: web_search, note: "Dates and venue not found" }
+  - id: klanghuus
+    name: Klanghuus (Kinderkurse, angegliedert an MKZ)
+    type: musik
+    website: https://www.konservatorium.ch/klanghuus
+    description: Eltern-Baby-Singen (ca. 4–12 Monate) und Eltern-Kind-Singen ab ca. 2 Jahren.
+  - id: moods
+    name: Moods (Jazzclub im Schiffbau)
+    type: musik
+    website: https://www.moods.ch/
+    description: Gelegentlich Kinderkonzerte (z.B. rätoromanische Reihe, 2–10 Jahre).
+    locations: [moods-schiffbau]
+
+  # ---------------------------------------------------------------- Theater
+  - id: theater-purpur
+    name: Theater Purpur
+    type: theater
+    website: https://theater-purpur.ch/
+    events_url: https://theater-purpur.ch/theater
+    description: Kindertheater mit Stücken schon ab 2 Jahren und offenem Geschichtenraum.
+    locations: [theater-purpur]
+  - id: theater-stadelhofen
+    name: Theater Stadelhofen (Zürcher Puppentheater)
+    type: theater
+    website: https://kikuka.ch/veranstalter/Theater%20Stadelhofen
+    description: Figuren- und Puppentheater, einzelne Stücke ab ca. 3–4 Jahren.
+    locations: [theater-stadelhofen]
+
+  # ---------------------------------------------------------------- Museen & Ausflugsorte
+  - { id: naturhistorisches-museum-uzh, name: Naturhistorisches Museum der Universität Zürich (ehem. Zoologisches Museum), type: museum, website: "https://www.nmz.uzh.ch/", locations: [nmz-uzh] }
+  - { id: landesmuseum, name: Landesmuseum Zürich, type: museum, website: "https://www.landesmuseum.ch/", locations: [landesmuseum] }
+  - { id: tram-museum, name: Tram-Museum Zürich, type: museum, website: "https://www.tram-museum.ch/", locations: [tram-museum] }
+  - { id: zoo-zuerich, name: Zoo Zürich, type: museum, website: "https://www.zoo.ch/", locations: [zoo-zuerich] }
+
+  # ---------------------------------------------------------------- Sport & Wasser
+  - { id: sportamt-zuerich, name: Sportamt Stadt Zürich (Hallenbäder), type: sport, website: "https://www.stadt-zuerich.ch/sport", locations: [hallenbad-oerlikon] }
+  - { id: aquababy, name: Aquababy Zürich, type: privat, website: "https://www.aquababy.ch/kurse/kursorte/" }
+  - { id: playball, name: Playball, type: privat, website: "https://www.playball.ch/", verification: { status: unverified, checked_at: 2026-11-18, method: web_search, note: "Listed on Stadt Zürich Kreis 2 page; website URL assumed" } }
+  - id: kidical-mass-zuerich
+    name: Kidical Mass Zürich
+    type: verein
+    website: https://www.myswitzerland.com/en/experiences/events/kidical-mass-zuerch/
+    description: Familien-Velodemo, mehrmals jährlich, für alle Altersstufen (Kinder im Anhänger/Kindersitz).

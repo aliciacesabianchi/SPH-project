@@ -1,0 +1,380 @@
+# Stadt Zürich (Soziokultur Kinder, Familienberatung), Quartiertreffs, Familienzentren, MegaMarie, Fadenspule, ELCH, Cevi.
+defaults:
+  status: active
+  languages: [de]
+  verification: { status: reported, checked_at: 2026-11-18, method: web_search }
+
+items:
+  # ------------------------------------------------ MegaMarie (MMI) – Schiffbaustrasse 9b/9c
+  - id: megamarie-offener-spielraum
+    title: { de: "MegaMarie – Spiel-, Werk- und Begegnungsraum", en: "MegaMarie – play, craft & meeting space" }
+    provider: mmi
+    locations: [megamarie]
+    category: playground
+    age: { min_months: 0, max_months: 72, label: "Familien mit kleinen Kindern" }
+    schedule: { kind: opening_hours, days: [mon, tue, wed, thu, fri], start: "08:30", end: "16:00", note: "08:30–12:00 und 13:30–16:00; Betriebsferien 21.12.2026–01.01.2027" }
+    price: { free: true, text: gratis }
+    registration: none
+    description: Angebote die ganze Woche, geleitet von geschulten Fachpersonen (Pädagogik, Psychologie), niederschwellig ohne Anmeldung.
+    url: https://www.mmi.ch/de-ch/megamarie
+    verification: { status: confirmed, checked_at: 2026-11-18, method: web_search, evidence: "https://mmi.ch/megamarie.html" }
+  - id: megamarie-bewegungsspiel
+    title: { de: Bewegungsspiel, en: Movement play }
+    provider: mmi
+    locations: [megamarie]
+    category: movement
+    age: { min_months: 24, max_months: 48, label: "2–4 Jahre mit Bezugsperson" }
+    schedule: { kind: weekly, days: [thu], start: "09:15", end: "10:45", note: "From programme Jan–Jul 2026; autumn programme to check" }
+    price: { free: true }
+    registration: none
+    url: https://www.mmi.ch/uploads/MegaMarie/MegaMarie_Programm-2026_1.Semester.pdf
+    status: needs_verification
+  - id: megamarie-babygruppe
+    title: { de: "Offene Babygruppe «In Kontakt – von Anfang an»", en: Open baby group }
+    provider: mmi
+    locations: [megamarie]
+    category: baby
+    age: { min_months: 0, max_months: 12, label: "ab Geburt mit Bezugsperson" }
+    schedule: { kind: weekly, days: [fri], note: "Time to check; programme Jan–Jul 2026" }
+    price: { free: true }
+    registration: none
+    url: https://www.mmi.ch/uploads/MegaMarie/MegaMarie_Programm-2026_1.Semester.pdf
+    status: needs_verification
+  - id: megamarie-malen-werken
+    title: { de: Malen und Werken, en: Painting & crafts }
+    provider: mmi
+    locations: [megamarie]
+    category: course
+    age: { min_months: 24, max_months: 72, label: "Kleinkinder mit Bezugsperson, max. 10 Tandems" }
+    schedule: { kind: weekly, days: [tue], start: "14:00", end: "16:00", note: "programme Jan–Jul 2026" }
+    price: { free: true }
+    registration: none
+    url: https://www.mmi.ch/uploads/MegaMarie/MegaMarie_Programm-2026_1.Semester.pdf
+    status: needs_verification
+  - id: megamarie-elternberatung
+    title: { de: Psychologische Elternberatung (offen), en: Drop-in parenting advice }
+    provider: mmi
+    locations: [megamarie]
+    category: advice
+    age: { min_months: 0, max_months: 72, label: Eltern }
+    schedule: { kind: weekly, days: [tue], start: "16:30", end: "17:30" }
+    price: { free: true, text: "gratis und vertraulich" }
+    registration: none
+    languages: [de, en]
+    url: https://i-need.ch/en/zurich-city-bjmd/advice-and-support/megamarie-psychological-consultation-for-parents
+
+  # ------------------------------------------------ Fadenspule (3 Standorte)
+  - id: fadenspule-megamarie
+    title: { de: "Fadenspule in der MegaMarie", en: "Fadenspule drop-in (MegaMarie)" }
+    provider: fadenspule
+    locations: [megamarie]
+    category: playground
+    tags: [begegnung]
+    age: { min_months: 0, max_months: 60, label: "Geburt bis Kindergarten" }
+    schedule: { kind: weekly, days: [mon, thu], note: "Mo 09:00–12:00, Do 14:30–17:30 (Herbstzeiten)" }
+    price: { free: false, text: "Beitrag nach eigenem Ermessen" }
+    registration: none
+    description: Begegnungsort für kleine Kinder und ihre Eltern, ohne Programm und ohne Kinderbetreuung. Für Familien mit Wohnsitz Stadt Zürich.
+    url: https://www.fadenspule.ch/standorte
+    verification: { status: confirmed, checked_at: 2026-11-18, method: web_search, evidence: "https://www.fadenspule.ch/standorte" }
+  - id: fadenspule-entlisberg
+    title: { de: "Fadenspule im Kinderhaus Entlisberg", en: "Fadenspule drop-in (Entlisberg)" }
+    provider: fadenspule
+    locations: [kinderhaus-entlisberg]
+    category: playground
+    age: { min_months: 0, max_months: 60, label: "Geburt bis Kindergarten" }
+    schedule: { kind: weekly, days: [tue], start: "09:00", end: "12:00" }
+    price: { free: false, text: "Beitrag nach eigenem Ermessen" }
+    registration: none
+    url: https://www.fadenspule.ch/standorte
+    verification: { status: confirmed, checked_at: 2026-11-18, method: web_search, evidence: "https://www.fadenspule.ch/standorte" }
+  - id: fadenspule-cece
+    title: { de: "Fadenspule im Zentrum ELCH CeCe-Areal", en: "Fadenspule drop-in (CeCe-Areal)" }
+    provider: fadenspule
+    locations: [elch-cece-areal]
+    category: playground
+    age: { min_months: 0, max_months: 60, label: "Geburt bis Kindergarten" }
+    schedule: { kind: weekly, days: [fri], start: "15:00", end: "18:00", note: "Team page says 14:30–17:30" }
+    price: { free: false, text: "Beitrag nach eigenem Ermessen" }
+    registration: none
+    url: https://www.fadenspule.ch/standorte
+    verification: { status: confirmed, checked_at: 2026-11-18, method: web_search, evidence: "https://www.fadenspule.ch/standorte", note: "two different Friday times on site" }
+
+  # ------------------------------------------------ Stadt Zürich – Soziokultur Kinder (gratis, ohne Anmeldung)
+  - id: familientreff-entlisberg-offener-treff
+    title: { de: Offener FamilienTreff, en: Open family meetup }
+    provider: stadt-zuerich-soziokultur-kinder
+    locations: [familientreff-entlisberg]
+    category: playground
+    age: { min_months: 0, max_months: 60, label: "bis 5 Jahre mit Begleitperson" }
+    schedule: { kind: weekly, note: "Days to check on the Kreis 2 page" }
+    price: { free: true }
+    registration: none
+    url: https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis2/kleinkinder.html
+    status: needs_verification
+  - id: familientreff-entlisberg-gz-leimbach
+    title: { de: "FamilienTreff im GZ Leimbach", en: "Family meetup at GZ Leimbach" }
+    provider: stadt-zuerich-soziokultur-kinder
+    locations: [gz-leimbach]
+    category: playground
+    age: { min_months: 0, max_months: 60, label: "bis 5 Jahre mit Begleitperson" }
+    schedule: { kind: weekly, days: [wed], start: "09:30", end: "11:30", pauses: school_holidays }
+    price: { free: true }
+    registration: none
+    url: https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis2/kleinkinder.html
+  - id: rhythmuszauber
+    title: { de: Rhythmuszauber, en: Rhythm magic (singing & movement) }
+    provider: stadt-zuerich-soziokultur-kinder
+    locations: [familientreff-entlisberg]
+    category: music
+    age: { min_months: 24, max_months: 60, label: "2 Jahre bis Kindergarten" }
+    schedule: { kind: weekly, days: [thu], start: "09:00", end: "11:30", season: { from: 2027-02-01, note: "Anmeldeschluss 25.02.2027" } }
+    price: { free: true }
+    registration: required
+    url: https://www.stadt-zuerich.ch/de/aktuell/veranstaltungen/stadtleben/zusammenleben/familienfreizeit/rhythmuszauber.html
+  - id: spielbaracke-kleinkinderwerken
+    title: { de: Kleinkinderwerken, en: Toddler crafts }
+    provider: stadt-zuerich-soziokultur-kinder
+    locations: [spielbaracke]
+    category: course
+    age: { min_months: 0, max_months: 48, label: "bis 4 Jahre mit Begleitperson" }
+    schedule: { kind: weekly, days: [fri], start: "09:30", end: "11:30", pauses: school_holidays }
+    price: { free: true }
+    registration: none
+    url: https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis4/kleinkinder.html
+  - id: indoor-spielplatz-hardau
+    title: { de: Indoor-Spielplatz Hardau, en: Hardau indoor playground }
+    provider: stadt-zuerich-soziokultur-kinder
+    locations: [familientreff-hard]
+    category: playground
+    age: { min_months: 0, max_months: 48, label: "bis 4 Jahre mit Bezugsperson" }
+    schedule: { kind: weekly, days: [tue, wed, thu, fri], start: "09:00", end: "11:30" }
+    price: { free: true }
+    registration: none
+    url: https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis4/kleinkinder.html
+  - id: indoor-spielplatz-baeckeranlage
+    title: { de: Indoor-Spielplatz Bäckeranlage (Winter), en: Bäckeranlage indoor playground (winter) }
+    provider: stadt-zuerich-soziokultur-kinder
+    locations: [quartierzentrum-baeckeranlage]
+    category: playground
+    age: { min_months: 0, max_months: 48, label: "bis 4 Jahre mit Bezugsperson" }
+    schedule: { kind: weekly, days: [thu], start: "09:30", end: "12:00", season: { note: "nach den Herbstferien bis vor den Frühlingsferien" } }
+    price: { free: true }
+    registration: none
+    url: https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis4/kleinkinder.html
+  - id: baeckeranlage-kleinkinder-werken
+    title: { de: Spielerisches Werken für Kleinkinder, en: Playful crafts for toddlers }
+    provider: stadt-zuerich-soziokultur-kinder
+    locations: [quartierzentrum-baeckeranlage]
+    category: course
+    age: { min_months: 0, max_months: 48, label: "Kleinkinder mit Bezugsperson" }
+    schedule: { kind: weekly, days: [tue] }
+    price: { free: true }
+    registration: none
+    url: https://www.stadt-zuerich.ch/de/stadtleben/zusammenleben/in-den-quartieren/familienfreizeit/kreis4/kleinkinder.html
+    status: needs_verification
+  - id: quartier-insel-baeckeranlage
+    title: { de: Quartier-Insel Bäckeranlage, en: Bäckeranlage play island }
+    provider: stadt-zuerich-soziokultur-kinder
+    locations: [quartierzentrum-baeckeranlage]
+    category: playground
+    age: { min_months: 0, max_months: 108, label: "Kleinkinder bis 3. Klasse" }
+    schedule: { kind: weekly, days: [thu], start: "14:00", end: "17:00", note: "Sommer beim Spielwagen, Winter im Quartierzentrum" }
+    price: { free: true }
+    registration: none
+    url: https://www.stadt-zuerich.ch/de/aktuell/veranstaltungen/stadtleben/zusammenleben/quartierzentren/quartier-insel-baeckeranlage.html
+
+  # ------------------------------------------------ Familienberatung Stadt Zürich
+  - id: familienberatung-treffpunkte
+    title: { de: "Familienberatung: Treffpunkte (Wägen, Messen, Beratung)", en: "Family counselling drop-in (weigh & measure)" }
+    provider: stadt-zuerich-familienberatung
+    locations: [sozialzentrum-selnau]
+    location_note: 15 Treffpunkte in der ganzen Stadt; Selnau für Kreise 1, 2, 3 (ohne Sihlfeld), 7, 8
+    category: advice
+    age: { min_months: 0, max_months: 60, label: "Babys und Kleinkinder" }
+    schedule: { kind: opening_hours, note: "Times per Treffpunkt on stadt-zuerich.ch" }
+    price: { free: true, text: "kostenlos, mehrsprachig" }
+    registration: none
+    languages: [de, en, fr, it, sq, es, pt, tr, ar, ti]
+    url: https://www.stadt-zuerich.ch/de/lebenslagen/jugend-und-familie/familien/familienberatung.html
+  - id: begleiteter-bewegungsraum
+    title: { de: Begleiteter Bewegungsraum, en: Guided movement room for babies }
+    provider: stadt-zuerich-familienberatung
+    locations: [familientreff-entlisberg]
+    category: movement
+    age: { min_months: 5, max_months: 20, label: "5–20 Monate (nach Jahrgang)" }
+    schedule: { kind: weekly, season: { from: 2026-09-01 }, note: "Groups by birth date; max. one session per week" }
+    price: { free: true }
+    registration: required
+    url: https://www.stadt-zuerich.ch/de/aktuell/veranstaltungen/stadtleben/zusammenleben/familienfreizeit/begleiteter-bewegungsraum.html
+  - id: pekip-entlisberg
+    title: { de: PEKiP Prager-Eltern-Kind-Programm, en: PEKiP baby course }
+    provider: stadt-zuerich-familienberatung
+    locations: [familientreff-entlisberg]
+    category: course
+    age: { min_months: 0, max_months: 12, label: "Babys im 1. Lebensjahr" }
+    schedule: { kind: series }
+    price: { free: false, text: Kursgeld }
+    registration: required
+    url: https://www.stadt-zuerich.ch/de/aktuell/veranstaltungen/stadtleben/zusammenleben/familienfreizeit/pekip-programm.html
+  - id: child-space-kurs
+    title: { de: "Child'Space-Kurs", en: "Child'Space course" }
+    provider: stadt-zuerich-familienberatung
+    locations: [familientreff-entlisberg]
+    category: course
+    age: { min_months: 2, max_months: 24, label: "7 Wochen bis 2 Jahre" }
+    schedule: { kind: series }
+    price: { free: false, amount_chf: 150, text: "CHF 150 für 5 Lektionen / CHF 120 für 4" }
+    registration: required
+    url: https://www.stadt-zuerich.ch/de/aktuell/veranstaltungen/stadtleben/zusammenleben/familienfreizeit/child-space-kurs.html
+  - id: quartiertreff-zentralstrasse-babymassage
+    title: { de: Babymassage, en: Baby massage }
+    provider: stadt-zuerich-quartiertreffs
+    locations: [quartiertreff-zentralstrasse]
+    category: course
+    age: { min_months: 1, max_months: 12, label: Babys }
+    schedule: { kind: weekly, days: [wed], start: "14:00", end: "16:00" }
+    price: { free: true }
+    registration: required
+    url: https://www.stadt-zuerich.ch/content/dam/stzh/schulen/aegerten/Downloads/Angebote_fuer_Familien_im_Kreis_3.pdf
+    status: needs_verification
+    verification: { status: reported, checked_at: 2026-11-18, method: web_search, note: "undated PDF" }
+
+  # ------------------------------------------------ Quartiertreffs / Quartierhäuser
+  - id: qh6-offene-kinderbetreuung
+    title: { de: Offene Kinderbetreuung, en: Drop-in childcare }
+    provider: qh6
+    locations: [quartierhaus-kreis-6]
+    category: spielgruppe
+    tags: [betreuung]
+    age: { min_months: 2, max_months: 60, label: "6 Wochen bis Kindergarten" }
+    schedule: { kind: weekly, days: [mon, tue, wed, thu], start: "09:30", end: "11:30", pauses: school_holidays, note: "Do 09:00–12:15" }
+    price: { free: false, amount_chf: 15, text: "CHF 15 pro Kind und Stunde, Geschwister CHF 10" }
+    registration: required
+    description: Betreuung durch erfahrene Babysitterinnen; Anmeldung 24 h vorher per SMS.
+    url: https://www.qh6.ch/angebote/offene-kinderbetreuung/
+    verification: { status: confirmed, checked_at: 2026-11-18, method: web_search, evidence: "https://www.qh6.ch/angebote/offene-kinderbetreuung/" }
+  - id: qh6-spielgruppe-roeslichnopf
+    title: Spielgruppe Röslichnopf
+    provider: qh6
+    locations: [quartierhaus-kreis-6]
+    category: spielgruppe
+    age: { min_months: 24, max_months: 60, label: "ab 2 Jahren" }
+    schedule: { kind: weekly, days: [mon, tue, wed, thu, fri], start: "08:00", end: "11:30", pauses: school_holidays, note: "auch 14:00–17:00; Mittagstisch bis 13:30" }
+    price: { free: false, text: Semesterbeitrag }
+    registration: required
+    languages: [de, en, fr, it, es]
+    url: https://qh6.ch/veranstaltung/spielgruppe-roeslichnopf/
+  - id: quartiertreff-enge-spielgruppe
+    title: { de: Spielgruppe im Treff, en: Playgroup }
+    provider: quartiertreff-enge-verein
+    locations: [quartiertreff-enge]
+    category: spielgruppe
+    age: { min_months: 24, max_months: 60, label: Kleinkinder }
+    schedule: { kind: weekly, note: "mehrere Vormittage pro Woche" }
+    price: { free: true }
+    registration: unknown
+    url: https://www.quartiertreff.ch/programm
+    status: needs_verification
+  - id: quartiertreff-hirslanden-cafe
+    title: { de: Café mit Spielzimmer und Spielwiese, en: Café with playroom }
+    provider: quartiertreff-hirslanden-verein
+    locations: [quartiertreff-hirslanden]
+    category: cafe
+    age: { min_months: 0, max_months: 96, label: "0–8 Jahre" }
+    schedule: { kind: opening_hours, note: "Times to check" }
+    price: { free: true, text: "Eintritt frei, Konsumation kostenpflichtig" }
+    registration: none
+    url: https://famigros.migros.ch/de/ausfluege-und-freizeit/ausflugsziele/quartiertreff-hirslanden-zuerich
+    status: needs_verification
+
+  # ------------------------------------------------ Zentrum ELCH
+  - id: elch-kafi-plus-regensbergstrasse
+    title: { de: Kafi Plus mit Indoorspielplatz, en: Family café with indoor play }
+    provider: verein-elch
+    locations: [elch-regensbergstrasse]
+    category: cafe
+    age: { min_months: 0, max_months: 72, label: "0–6 Jahre" }
+    schedule: { kind: opening_hours, note: "Times to check" }
+    price: { free: true, text: "gratis, kein Konsumzwang" }
+    registration: none
+    url: https://zentrumelch.ch/kafi-plus
+  - id: elch-kafi-plus-frieden
+    title: { de: Kafi Plus Frieden, en: Family café (Frieden) }
+    provider: verein-elch
+    locations: [elch-frieden]
+    category: cafe
+    age: { min_months: 0, max_months: 72, label: "0–6 Jahre" }
+    schedule: { kind: weekly, days: [mon, wed, fri], start: "15:00", end: "17:00", note: "site also says 17:30; self-service café weekdays 08:30–11:15" }
+    price: { free: true, text: "gratis, kein Konsumzwang" }
+    registration: none
+    url: https://zentrumelch.ch/familienzentren-zuerich-elch/frieden/angebote
+  - id: elch-kafi-plus-cece
+    title: { de: Kafi Plus CeCe-Areal, en: Family café (CeCe-Areal) }
+    provider: verein-elch
+    locations: [elch-cece-areal]
+    category: cafe
+    age: { min_months: 0, max_months: 72, label: "0–6 Jahre" }
+    schedule: { kind: opening_hours, days: [mon, tue, wed, thu, fri], note: "08:30–11:30 und 13:30–17:00" }
+    price: { free: true, text: "gratis, kein Konsumzwang" }
+    registration: none
+    url: https://zentrumelch.ch/familienzentren-zuerich-elch/cece-areal/uebersicht
+  - id: elch-krabbeltreff-cece
+    title: { de: Krabbeltreff, en: Baby crawling meetup }
+    provider: verein-elch
+    locations: [elch-cece-areal]
+    category: baby
+    age: { min_months: 0, max_months: 18, label: Babys }
+    schedule: { kind: weekly, note: "Day/time to check" }
+    price: { free: true }
+    registration: none
+    url: https://zentrumelch.ch/familienzentren-zuerich-elch/cece-areal/uebersicht
+    status: needs_verification
+  - id: elch-eltern-kind-turnen-probstei
+    title: { de: Eltern-Kind-Turnen, en: Parent & child gym }
+    provider: verein-elch
+    locations: [turnhalle-probstei]
+    category: movement
+    age: { min_months: 30, max_months: 96, label: "2½–8 Jahre in Begleitung" }
+    schedule: { kind: weekly, days: [sat] }
+    price: { free: false, text: Beitrag }
+    registration: unknown
+    url: https://zentrumelch.ch/familienzentren-zuerich-elch/krokodil/angebote/detail/eltern-kind-turnen
+
+  # ------------------------------------------------ Cevi
+  - id: cevi-gloggespiel
+    title: { de: Gloggespiel – stundenweise Kinderbetreuung, en: Gloggespiel hourly childcare }
+    provider: cevi-zuerich
+    locations: [cevi-glockenhof]
+    category: spielgruppe
+    tags: [betreuung]
+    age: { min_months: 4, max_months: 72, label: "ab 18 Monaten (Babys ab 4 Monaten auf Anfrage)" }
+    schedule: { kind: opening_hours, days: [tue, wed, thu, fri, sat], note: "Di–Fr 09:00–18:00, Sa 10:00–18:00" }
+    price: { free: false, amount_chf: 12, text: "CHF 12/h ab 18 Monate, CHF 22/h darunter, Geschwister CHF 2 Rabatt" }
+    registration: recommended
+    description: Keine Krippe, sondern kurzzeitige, unregelmässige Betreuung. Telefon 044 213 21 99.
+    url: https://www.cevizuerich.ch/angebote/gloggespiel/
+    verification: { status: confirmed, checked_at: 2026-11-18, method: web_search, evidence: "https://www.cevizuerich.ch/angebote/gloggespiel/" }
+  - id: cevi-gloggespiel-offener-spielraum
+    title: { de: Gloggespiel – offener Spielraum, en: Open playroom }
+    provider: cevi-zuerich
+    locations: [cevi-glockenhof]
+    category: playground
+    age: { min_months: 0, max_months: 72, label: "Kleinkinder mit Begleitung" }
+    schedule: { kind: weekly, days: [wed], note: afternoon }
+    price: { free: true }
+    registration: none
+    url: https://www.cevizuerich.ch/angebote/gloggespiel/
+    status: needs_verification
+
+  # ------------------------------------------------ MiniMove (IdéeSport)
+  - id: minimove
+    title: { de: MiniMove – offene Turnhalle am Sonntag, en: MiniMove – Sunday open gym }
+    provider: ideesport
+    locations: [minimove-buhnrain, minimove-herzogenmuehle, minimove-kappeli, minimove-kern, minimove-leimbach, minimove-kuegeliloo, minimove-letzi]
+    category: movement
+    age: { min_months: 0, max_months: 72, label: "0 Jahre bis Ende Kindergarten" }
+    schedule: { kind: weekly, days: [sun], season: { note: "Herbstferien bis Frühlingsferien, an ausgewählten Sonntagen" }, note: "Exact Sundays and times per hall to check" }
+    price: { free: true }
+    registration: none
+    url: https://www.stadt-zuerich.ch/de/aktuell/medienmitteilungen/2025/02/stadt-zuerich-erweitert-bewegungsangebot-minimove.html

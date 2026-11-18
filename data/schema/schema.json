@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quartierjournal.ch/schema/data.json",
+  "title": "Quartierjournal events database",
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "date": { "type": "string", "format": "date", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "time": { "type": "string", "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$" },
+    "weekday": { "enum": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"] },
+    "localized": {
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        {
+          "type": "object",
+          "properties": {
+            "de": { "type": "string" }, "en": { "type": "string" },
+            "fr": { "type": "string" }, "it": { "type": "string" }
+          },
+          "required": ["de"],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "verification": {
+      "type": "object",
+      "description": "How sure we are. confirmed = checked on the provider's own page; reported = found via a third-party listing or search snippet; unverified = from memory or incomplete, needs a human check.",
+      "properties": {
+        "status": { "enum": ["confirmed", "reported", "unverified"] },
+        "checked_at": { "$ref": "#/$defs/date" },
+        "method": { "enum": ["provider_site", "web_search", "aggregator", "phone_email", "manual", "scraper", "claude_refresh"] },
+        "evidence": { "type": "string", "description": "URL or short note that backs the claim" },
+        "note": { "type": "string" }
+      },
+      "required": ["status", "checked_at"],
+      "additionalProperties": false
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "street": { "type": ["string", "null"] },
+        "zip": { "type": ["string", "null"], "pattern": "^80\\d\\d$" },
+        "city": { "type": "string" }
+      },
+      "required": ["city"],
+      "additionalProperties": false
+    }
+  },
+
+  "provider": {
+    "type": "object",
+    "properties": {
+      "id": { "$ref": "#/$defs/id" },
+      "name": { "type": "string" },
+      "type": {
+        "enum": [
+          "gemeinschaftszentrum", "quartiertreff", "familienzentrum", "stadt",
+          "kirche_reformiert", "kirche_katholisch", "kirche_andere",
+          "bibliothek", "museum", "theater", "musik", "sport", "verein", "privat"
+        ]
+      },
+      "parent": { "$ref": "#/$defs/id", "description": "Umbrella organisation, e.g. every GZ -> zgz" },
+      "website": { "type": "string", "format": "uri" },
+      "events_url": { "type": "string", "format": "uri", "description": "Page or feed that lists this provider's events; used by the daily refresh" },
+      "email": { "type": "string" },
+      "phone": { "type": "string" },
+      "description": { "$ref": "#/$defs/localized" },
+      "locations": { "type": "array", "items": { "$ref": "#/$defs/id" } },
+      "verification": { "$ref": "#/$defs/verification" }
+    },
+    "required": ["id", "name", "type", "verification"],
+    "additionalProperties": false
+  },
+
+  "location": {
+    "type": "object",
+    "properties": {
+      "id": { "$ref": "#/$defs/id" },
+      "name": { "type": "string" },
+      "kind": {
+        "enum": [
+          "gemeinschaftszentrum", "quartiertreff", "familienzentrum", "kirche", "kirchgemeindehaus",
+          "bibliothek", "museum", "theater", "konzertsaal", "turnhalle", "schwimmbad",
+          "spielplatz", "park", "zoo", "cafe", "schule", "andere"
+        ]
+      },
+      "address": { "$ref": "#/$defs/address" },
+      "kreis": { "type": ["integer", "null"], "minimum": 1, "maximum": 12 },
+      "quartier": { "type": ["string", "null"] },
+      "geo": {
+        "type": "object",
+        "properties": { "lat": { "type": "number" }, "lng": { "type": "number" } },
+        "required": ["lat", "lng"], "additionalProperties": false
+      },
+      "is_place": { "type": "boolean", "description": "Show in the website's static 'places' list (museum, park, pool…)" },
+      "stroller_friendly": { "type": ["boolean", "null"] },
+      "url": { "type": "string", "format": "uri" },
+      "note": { "type": "string" },
+      "verification": { "$ref": "#/$defs/verification" }
+    },
+    "required": ["id", "name", "kind", "address", "kreis", "verification"],
+    "additionalProperties": false
+  },
+
+  "event": {
+    "type": "object",
+    "properties": {
+      "id": { "$ref": "#/$defs/id" },
+      "title": { "$ref": "#/$defs/localized" },
+      "provider": { "$ref": "#/$defs/id" },
+      "locations": { "type": "array", "items": { "$ref": "#/$defs/id" }, "description": "Empty = several/unknown sites, see location_note" },
+      "location_note": { "type": "string" },
+      "category": {
+        "enum": [
+          "playground", "spielgruppe", "baby", "music", "movement", "museum",
+          "theatre", "library", "church", "cafe", "course", "swimming", "nature", "festival", "advice"
+        ]
+      },
+      "tags": { "type": "array", "items": { "type": "string" } },
+      "age": {
+        "type": "object",
+        "properties": {
+          "min_months": { "type": "integer", "minimum": 0 },
+          "max_months": { "type": ["integer", "null"], "minimum": 0, "description": "null = no upper limit (e.g. 'für alle')" },
+          "label": { "$ref": "#/$defs/localized" }
+        },
+        "required": ["min_months", "max_months"],
+        "additionalProperties": false
+      },
+      "schedule": {
+        "type": "object",
+        "properties": {
+          "kind": { "enum": ["weekly", "dates", "opening_hours", "series", "on_request"] },
+          "days": { "type": "array", "items": { "$ref": "#/$defs/weekday" } },
+          "start": { "$ref": "#/$defs/time" },
+          "end": { "$ref": "#/$defs/time" },
+          "frequency": { "enum": ["weekly", "biweekly", "monthly", "irregular"] },
+          "season": {
+            "type": "object",
+            "properties": { "from": { "$ref": "#/$defs/date" }, "to": { "$ref": "#/$defs/date" }, "note": { "type": "string" } },
+            "additionalProperties": false
+          },
+          "pauses": { "enum": ["school_holidays", "summer", "none", "unknown"] },
+          "dates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": { "$ref": "#/$defs/date" },
+                "start": { "$ref": "#/$defs/time" },
+                "end": { "$ref": "#/$defs/time" },
+                "location": { "$ref": "#/$defs/id" },
+                "note": { "type": "string" }
+              },
+              "required": ["date"],
+              "additionalProperties": false
+            }
+          },
+          "note": { "type": "string" }
+        },
+        "required": ["kind"],
+        "additionalProperties": false
+      },
+      "price": {
+        "type": "object",
+        "properties": {
+          "free": { "type": "boolean" },
+          "amount_chf": { "type": ["number", "null"] },
+          "text": { "$ref": "#/$defs/localized" }
+        },
+        "required": ["free"],
+        "additionalProperties": false
+      },
+      "registration": { "enum": ["none", "required", "recommended", "unknown"] },
+      "languages": { "type": "array", "items": { "type": "string" } },
+      "description": { "$ref": "#/$defs/localized" },
+      "url": { "type": "string", "format": "uri" },
+      "status": { "enum": ["active", "needs_verification", "paused", "ended"] },
+      "verification": { "$ref": "#/$defs/verification" }
+    },
+    "required": ["id", "title", "provider", "category", "age", "schedule", "price", "registration", "status", "verification"],
+    "additionalProperties": false
+  },
+
+  "source": {
+    "type": "object",
+    "properties": {
+      "id": { "$ref": "#/$defs/id" },
+      "name": { "type": "string" },
+      "url": { "type": "string", "format": "uri" },
+      "kind": { "enum": ["provider_calendar", "aggregator", "api", "open_data", "directory"] },
+      "provider": { "$ref": "#/$defs/id" },
+      "method": {
+        "enum": ["jsonld", "ical", "json_api", "csv", "html_watch", "claude"],
+        "description": "jsonld/ical/json_api/csv are parsed automatically; html_watch only detects that the page changed; claude = read and interpreted by the Claude refresh task"
+      },
+      "covers": { "type": "string", "description": "What we expect to find there" },
+      "priority": { "enum": ["high", "medium", "low"] },
+      "note": { "type": "string" }
+    },
+    "required": ["id", "name", "url", "kind", "method", "priority"],
+    "additionalProperties": false
+  }
+}

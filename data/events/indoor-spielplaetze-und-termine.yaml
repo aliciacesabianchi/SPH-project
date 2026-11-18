@@ -1,0 +1,149 @@
+# Free indoor play spaces (mainly from zurini.ch "15 kostenlose Indoor-Spielplätze", ~8 months old)
+# and dated one-off events found on kikuka.ch.
+defaults:
+  status: active
+  languages: [de]
+  verification: { status: reported, checked_at: 2026-11-18, method: aggregator, evidence: "https://zurini.ch/k2/12-kostenlose-indoor-spielplaetze-in-zuerich/" }
+
+items:
+  - id: gz-buchegg-spielzimmer-kindertraum
+    title: { de: Spielzimmer Kindertraum, en: Kindertraum playroom }
+    provider: gz-buchegg
+    locations: [gz-buchegg]
+    category: playground
+    age: { min_months: 0, max_months: 72, label: "0–6 Jahre" }
+    schedule: { kind: opening_hours, days: [tue, wed, thu, fri], start: "10:00", end: "17:30", note: "plus erster Sonntag im Monat 11:00–16:00" }
+    price: { free: true }
+    registration: none
+    url: https://gz-zh.ch/gz-buchegg/
+  - id: gz-riesbach-indoor-spielen
+    title: { de: Indoor-Spielen im GZ Riesbach (Winter), en: Indoor play (winter) }
+    provider: gz-riesbach
+    locations: [gz-riesbach]
+    category: playground
+    age: { min_months: 0, max_months: 72, label: "0–6 Jahre" }
+    schedule: { kind: weekly, days: [tue, wed, thu, fri], start: "14:00", end: "17:30", season: { note: "Winter bis zum Frühling" } }
+    price: { free: true }
+    registration: none
+    url: https://gz-zh.ch/gz-riesbach/
+  - id: gz-oerlikon-offenes-haus
+    title: { de: Offenes Haus mit Spielmöglichkeiten, en: Open house with play area }
+    provider: gz-oerlikon
+    locations: [gz-oerlikon]
+    category: playground
+    age: { min_months: 0, max_months: null, label: "alle Altersstufen" }
+    schedule: { kind: opening_hours, days: [mon, tue, wed, thu, fri], note: "Mo 13:30–17:00, Di–Fr 09:00–17:00" }
+    price: { free: true }
+    registration: none
+    url: https://gz-zh.ch/gz-oerlikon/
+  - id: baeckeranlage-indoor-montag
+    title: { de: Indoor-Spielen Bäckeranlage (Montag), en: Indoor play Bäckeranlage (Monday) }
+    provider: stadt-zuerich-soziokultur-kinder
+    locations: [quartierzentrum-baeckeranlage]
+    category: playground
+    age: { min_months: 0, max_months: 48, label: "bis 4 Jahre" }
+    schedule: { kind: weekly, days: [mon], start: "14:30", end: "17:00", season: { note: "Oktober bis Februar, im Aktionsraum" } }
+    price: { free: true }
+    registration: none
+    url: https://zurini.ch/k2/12-kostenlose-indoor-spielplaetze-in-zuerich/
+  - id: gz-affoltern-indoorspielplatz
+    title: { de: Indoorspielplatz GZ Affoltern, en: Indoor playground }
+    provider: gz-affoltern
+    locations: [gz-affoltern]
+    category: playground
+    age: { min_months: 0, max_months: 72, label: Kleinkinder }
+    schedule: { kind: opening_hours, note: "Times in zurini list / GZ website" }
+    price: { free: true }
+    registration: none
+    url: https://zurini.ch/k2/12-kostenlose-indoor-spielplaetze-in-zuerich/
+    status: needs_verification
+  - id: gz-wollishofen-indoorspielplatz
+    title: { de: Indoorspielplatz GZ Wollishofen, en: Indoor playground }
+    provider: gz-wollishofen
+    locations: [gz-wollishofen]
+    category: playground
+    age: { min_months: 0, max_months: 72, label: Kleinkinder }
+    schedule: { kind: opening_hours, note: "Times in zurini list / GZ website" }
+    price: { free: true }
+    registration: none
+    url: https://zurini.ch/k2/12-kostenlose-indoor-spielplaetze-in-zuerich/
+    status: needs_verification
+  - id: gz-leimbach-indoorspielplatz
+    title: { de: Indoorspielplatz GZ Leimbach, en: Indoor playground }
+    provider: gz-leimbach
+    locations: [gz-leimbach]
+    category: playground
+    age: { min_months: 0, max_months: 72, label: Kleinkinder }
+    schedule: { kind: opening_hours, note: "Times in zurini list / GZ website" }
+    price: { free: true }
+    registration: none
+    url: https://zurini.ch/k2/12-kostenlose-indoor-spielplaetze-in-zuerich/
+    status: needs_verification
+  - id: elch-krokodil-indoorspielplatz
+    title: { de: Indoorspielplatz Zentrum Krokodil, en: Indoor playground }
+    provider: verein-elch
+    locations: [elch-krokodil]
+    category: playground
+    age: { min_months: 0, max_months: 72, label: Kleinkinder }
+    schedule: { kind: opening_hours, note: "Times in zurini list / zentrumelch.ch" }
+    price: { free: true }
+    registration: none
+    url: https://zurini.ch/k2/12-kostenlose-indoor-spielplaetze-in-zuerich/
+    status: needs_verification
+  - id: saatlen-indoorspielplatz
+    title: { de: Indoorspielplatz Kirchenzentrum Saatlen, en: Indoor playground }
+    provider: kirchenzentrum-saatlen-anbieter
+    locations: [kirchenzentrum-saatlen]
+    category: playground
+    age: { min_months: 0, max_months: 72, label: Kleinkinder }
+    schedule: { kind: opening_hours, note: "Times in zurini list" }
+    price: { free: true }
+    registration: none
+    url: https://zurini.ch/k2/12-kostenlose-indoor-spielplaetze-in-zuerich/
+    status: needs_verification
+  - id: baptisten-indoorspielplatz
+    title: { de: Indoorspielplatz Baptistengemeinde, en: Indoor playground }
+    provider: baptistengemeinde-zuerich
+    locations: [baptistengemeinde-steinwiesen]
+    category: playground
+    age: { min_months: 0, max_months: 72, label: Kleinkinder }
+    schedule: { kind: opening_hours, note: "Times in zurini list" }
+    price: { free: true }
+    registration: none
+    url: https://zurini.ch/k2/12-kostenlose-indoor-spielplaetze-in-zuerich/
+    status: needs_verification
+  - id: bauspielplatz-affoltern
+    title: { de: Bauspielplatz Affoltern, en: Adventure building playground }
+    provider: bauspielplatz-affoltern-verein
+    locations: [bauspielplatz-affoltern]
+    category: nature
+    age: { min_months: 36, max_months: null, label: "Kinder (Kleinkinder mit Begleitung)" }
+    schedule: { kind: weekly, days: [wed, sat], start: "13:30", end: "17:30" }
+    price: { free: true }
+    registration: none
+    url: https://zurini.ch/en/uncategorized-en/adventure-playgrounds-in-zurich-3-creative-building-playgrounds-for-children/
+
+  # ---------------- dated events (kikuka.ch)
+  - id: pbz-ryte-ryte-roessli-witikon-2026-12-10
+    title: { de: "Ryte ryte Rössli (PBZ Witikon)", en: "Nursery rhymes (PBZ Witikon)" }
+    provider: pbz
+    locations: [pbz-witikon]
+    category: library
+    age: { min_months: 24, max_months: 36, label: "2–3 Jahre" }
+    schedule: { kind: dates, dates: [ { date: 2026-12-10, start: "10:00", end: "10:45" } ] }
+    price: { free: true }
+    registration: unknown
+    url: https://kikuka.ch/veranstalter/PBZ%20Pestalozzi-Bibliothek%20Z%C3%BCrich
+    verification: { status: reported, checked_at: 2026-11-18, method: aggregator, evidence: "https://kikuka.ch/veranstalter/PBZ%20Pestalozzi-Bibliothek%20Z%C3%BCrich" }
+  - id: pbz-family-literacy-italiano-riesbach-2026-12
+    title: { de: "Family Literacy auf Italienisch (PBZ Riesbach)", en: "Family Literacy in Italian", it: "Family Literacy in italiano" }
+    provider: pbz
+    locations: [pbz-riesbach]
+    category: library
+    age: { min_months: 24, max_months: 60, label: "2–5 Jahre" }
+    schedule: { kind: dates, dates: [ { date: 2026-12-01, start: "16:00", end: "17:30" }, { date: 2026-12-15, start: "16:00", end: "17:30" } ] }
+    price: { free: true }
+    registration: none
+    languages: [it]
+    url: https://kikuka.ch/veranstalter/PBZ%20Pestalozzi-Bibliothek%20Z%C3%BCrich
+    verification: { status: reported, checked_at: 2026-11-18, method: aggregator, evidence: "https://kikuka.ch/veranstalter/PBZ%20Pestalozzi-Bibliothek%20Z%C3%BCrich" }

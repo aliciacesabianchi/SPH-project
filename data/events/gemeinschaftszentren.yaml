@@ -1,0 +1,238 @@
+# Offers at the 17 Zürcher Gemeinschaftszentren (gz-zh.ch).
+# Most GZ offers pause during Zürich school holidays.
+defaults:
+  status: active
+  languages: [de]
+  verification: { status: reported, checked_at: 2026-11-18, method: web_search }
+
+items:
+  - id: gz-seebach-eltern-kind-treff
+    title: { de: Eltern-Kind-Treff, en: Parent & toddler meetup }
+    provider: gz-seebach
+    locations: [gz-seebach-leutschenbach]
+    category: baby
+    tags: [singen, bewegen, spielen]
+    age: { min_months: 0, max_months: 48, label: "bis 4 Jahre" }
+    schedule: { kind: weekly, days: [thu], pauses: school_holidays, note: "Time not in search snippet; last seen date Thu 24.09.2026" }
+    price: { free: true, text: gratis }
+    registration: none
+    description: Singen, Bewegen und Spielen für Kinder bis 4 Jahre in Begleitung Erwachsener.
+    url: https://gz-zh.ch/gz-seebach/angebote/eltern-kind-treff/
+    status: needs_verification
+    verification: { status: reported, checked_at: 2026-11-18, method: web_search, evidence: "https://gz-zh.ch/gz-seebach/angebote/eltern-kind-treff/", note: "weekday derived from a listed date, start/end time missing" }
+
+  - id: gz-hirzenbach-krabbelgruppe
+    title: { de: Krabbelgruppe, en: Crawling group }
+    provider: gz-hirzenbach
+    locations: [gz-hirzenbach]
+    category: baby
+    age: { min_months: 4, max_months: 36, label: "ab 4 Monaten" }
+    schedule: { kind: weekly, days: [fri], start: "10:00", end: "16:30", pauses: school_holidays }
+    price: { free: true, text: gratis }
+    registration: none
+    description: Treffpunkt für Eltern mit Kleinkindern ab 4 Monaten im grossen Saal.
+    url: https://gz-zh.ch/gz-hirzenbach/bei-uns/indoorspielplatz-und-spielaktionen-im-quartier/
+
+  - id: gz-hirzenbach-spielsaal
+    title: { de: Spielsaal (Indoorspielplatz), en: Indoor playroom }
+    provider: gz-hirzenbach
+    locations: [gz-hirzenbach]
+    category: playground
+    age: { min_months: 0, max_months: 84, label: "Kleinkinder mit Begleitung" }
+    schedule: { kind: opening_hours, note: "Di 14:00–17:00, Do 10:00–17:00" , days: [tue, thu] }
+    price: { free: true }
+    registration: none
+    url: https://gz-zh.ch/gz-hirzenbach/bei-uns/indoorspielplatz-und-spielaktionen-im-quartier/
+
+  - id: gz-hirzenbach-spielgruppe-baerliland
+    title: Spielgruppe Bärliland
+    provider: gz-hirzenbach
+    locations: [gz-hirzenbach]
+    category: spielgruppe
+    age: { min_months: 24, max_months: 60, label: "ab 2 Jahren" }
+    schedule: { kind: weekly, days: [mon, tue, wed, thu, fri], start: "08:30", end: "11:30", pauses: school_holidays }
+    price: { free: false, text: "Semesterbeitrag, siehe Website" }
+    registration: required
+    url: https://gz-zh.ch/gz-hirzenbach/angebote/spielgruppe-baerliland/
+
+  - id: gz-witikon-krabbel-und-spieltreff
+    title: { de: Krabbel- und Spieltreff, en: Baby & toddler play meetup }
+    provider: gz-witikon
+    locations: [gz-witikon]
+    category: baby
+    age: { min_months: 0, max_months: 48, label: "Babys bis ca. 4 Jahre" }
+    schedule: { kind: weekly, days: [thu], start: "10:00", end: "11:30", pauses: school_holidays, note: im Dachstock }
+    price: { free: true, text: gratis }
+    registration: none
+    description: Für Eltern, Grosseltern, Babys und Kleinkinder.
+    url: https://gz-zh.ch/gz-witikon/angebote/krabbel-und-spieltreff-2/
+
+  - id: gz-bachwiesen-eltern-kind-gruppe
+    title: { de: Eltern-Kind-Gruppe, en: Parent & child group }
+    provider: gz-bachwiesen
+    locations: [gz-bachwiesen]
+    category: baby
+    age: { min_months: 0, max_months: 48, label: "0–4 Jahre" }
+    schedule: { kind: weekly, days: [wed], start: "09:30", end: "11:00", pauses: school_holidays, note: im Tiefparterre }
+    price: { free: false, amount_chf: 60, text: "CHF 60 pro Halbjahr" }
+    registration: required
+    url: https://gz-zh.ch/gz-bachwiesen/angebote/neueeltern-kind-gruppe/
+    status: needs_verification
+    verification: { status: reported, checked_at: 2026-11-18, method: web_search, note: "page entry dated 2023" }
+
+  - id: gz-affoltern-kleinkinderatelier
+    title: { de: Atelier für Kleinkinder, en: Toddler art studio }
+    provider: gz-affoltern
+    locations: [gz-affoltern]
+    category: course
+    tags: [werken, malen]
+    age: { min_months: 0, max_months: 48, label: "0–4 Jahre mit Begleitperson" }
+    schedule: { kind: weekly, days: [thu], start: "09:30", end: "11:30", pauses: school_holidays }
+    price: { free: false, amount_chf: 9, text: "CHF 9 pro Familie" }
+    registration: none
+    url: https://gz-zh.ch/gz-affoltern/angebote/kleinkinderatelier/
+
+  - id: gz-hoengg-indoorspielplatz
+    title: { de: Indoorspielplatz im Kulturkeller, en: Indoor playground }
+    provider: gz-hoengg
+    locations: [gz-hoengg]
+    category: playground
+    age: { min_months: 0, max_months: 72, label: "Kleinkinder mit Begleitung" }
+    schedule: { kind: weekly, days: [wed, thu], season: { note: "Winter: nach den Herbstferien bis Frühling" }, note: "Times to check" }
+    price: { free: true }
+    registration: none
+    url: https://gz-zh.ch/gz-hoengg/angebote/indoor-spielplatz/
+    status: needs_verification
+
+  - id: gz-hottingen-eltern-kind-turnen
+    title: { de: Eltern-Kind-Turnen, en: Parent & child gym }
+    provider: gz-hottingen
+    locations: [gz-hottingen]
+    category: movement
+    age: { min_months: 30, max_months: 60, label: "2½ Jahre bis Kindergarten" }
+    schedule: { kind: weekly, days: [thu], pauses: school_holidays }
+    price: { free: false, text: Kursbeitrag }
+    registration: required
+    url: https://gz-zh.ch/gz-hottingen/angebote/eltern-kind-turnen/
+
+  - id: gz-loogarten-kreativ-kleinkinder
+    title: { de: Kreativangebot für Kleinkinder, en: Creative session for toddlers }
+    provider: gz-loogarten
+    locations: [gz-loogarten]
+    category: course
+    tags: [werken]
+    age: { min_months: 30, max_months: 72, label: "ab 2½ Jahren mit Begleitperson" }
+    schedule: { kind: weekly, days: [tue], start: "14:30", end: "16:30", pauses: school_holidays }
+    price: { free: false, text: Materialbeitrag }
+    registration: none
+    url: https://gz-zh.ch/gz-loogarten/angebote/werken-fuer-kleinkinder-familien/
+
+  - id: gz-loogarten-spielraum
+    title: { de: Spielraum für Kinder bis 7, en: Playroom (under 7) }
+    provider: gz-loogarten
+    locations: [gz-loogarten]
+    category: playground
+    age: { min_months: 0, max_months: 84, label: "bis 7 Jahre mit Erwachsenen" }
+    schedule: { kind: opening_hours, note: "Times to check (page from 2025)" }
+    price: { free: true }
+    registration: none
+    url: https://gz-zh.ch/gz-loogarten/angebote/spielraum-fuer-kinder-bis-7-jahren/
+    status: needs_verification
+
+  - id: gz-schindlergut-spielgruppe-la-le-lu
+    title: Spielgruppe La Le Lu
+    provider: gz-schindlergut
+    locations: [gz-schindlergut]
+    category: spielgruppe
+    age: { min_months: 24, max_months: 60, label: "ab 2 Jahren" }
+    schedule: { kind: weekly, days: [thu], start: "08:45", end: "13:45", pauses: school_holidays, note: "Earlier also Mon/Wed" }
+    price: { free: false, text: Semesterbeitrag }
+    registration: required
+    url: https://gz-zh.ch/gz-schindlergut/angebote/spielgruppe-la-le-lu-gruppe-1/
+
+  - id: gz-heuried-eltern-kind-gruppe
+    title: { de: "Offene Eltern-Kind-Gruppe: Singen, Spielen, Ermutigen", en: Open parent & child group }
+    provider: gz-heuried
+    locations: [gz-heuried]
+    category: baby
+    age: { min_months: 0, max_months: 36, label: "0–3 Jahre" }
+    schedule: { kind: weekly, note: "Day/time to check" }
+    price: { free: true }
+    registration: none
+    url: https://gz-zh.ch/gz-heuried/
+    status: needs_verification
+    verification: { status: reported, checked_at: 2026-11-18, method: aggregator, note: "seen on a third-party listing only" }
+
+  - id: gz-buchegg-papa-kind-cafe
+    title: { de: Papa & Kind Café, en: Dad & kid café }
+    provider: gz-buchegg
+    locations: [gz-buchegg]
+    category: cafe
+    tags: [väter]
+    age: { min_months: 0, max_months: 60, label: "0–5 Jahre" }
+    schedule: { kind: series, frequency: irregular }
+    price: { free: true }
+    registration: none
+    url: https://gz-zh.ch/gz-buchegg/
+    status: needs_verification
+
+  - id: gz-buchegg-1-elterntreff
+    title: { de: 1-Elterntreff (Alleinerziehende), en: Single parents meetup }
+    provider: gz-buchegg
+    locations: [gz-buchegg]
+    category: cafe
+    age: { min_months: 0, max_months: null, label: "Familien" }
+    schedule: { kind: series, frequency: irregular }
+    price: { free: true }
+    registration: none
+    url: https://gz-zh.ch/gz-buchegg/angebote/1-elterntreff/
+    status: needs_verification
+
+  - id: gz-oerlikon-vater-kind-treff
+    title: { de: Vater-Kind-Treff, en: Father & child meetup }
+    provider: gz-oerlikon
+    locations: [gz-oerlikon]
+    category: playground
+    tags: [väter]
+    age: { min_months: 24, max_months: 96, label: "Vorschule bis 2. Klasse" }
+    schedule: { kind: series, frequency: monthly, note: "Saturdays, last seen 05.09.2026" }
+    price: { free: true }
+    registration: none
+    url: https://gz-zh.ch/gz-oerlikon/angebote/vater-kind-treff/
+    status: needs_verification
+
+  - id: gz-oerlikon-babymassage
+    title: { de: Babymassage mit Beratung, en: Baby massage }
+    provider: gz-oerlikon
+    locations: [gz-oerlikon]
+    category: course
+    age: { min_months: 1, max_months: 12, label: "ab 6 Wochen" }
+    schedule: { kind: series, note: "Course blocks; next block to check" }
+    price: { free: false, text: Kursgeld }
+    registration: required
+    url: https://gz-zh.ch/gz-oerlikon/angebote/babymassage-mit-beratung/
+    status: needs_verification
+
+  - id: gz-wipkingen-babymassage
+    title: { de: Babymassage, en: Baby massage }
+    provider: gz-wipkingen
+    locations: [gz-wipkingen]
+    category: course
+    age: { min_months: 1, max_months: 12, label: Babys }
+    schedule: { kind: series }
+    price: { free: false, text: Kursgeld }
+    registration: required
+    url: https://gz-zh.ch/gz-wipkingen/
+    status: needs_verification
+
+  - id: gz-riesbach-rueckbildung-mit-baby
+    title: { de: Rückbildung mit Baby, en: Postnatal fitness with baby }
+    provider: gz-riesbach
+    locations: [gz-riesbach]
+    category: course
+    age: { min_months: 1, max_months: 12, label: Babys }
+    schedule: { kind: series }
+    price: { free: false, text: Kursgeld }
+    registration: required
+    url: https://gz-zh.ch/gz-riesbach/
+    status: needs_verification
